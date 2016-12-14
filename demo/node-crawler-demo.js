@@ -2,6 +2,7 @@
  * Created by Administrator on 2016/12/14.
  */
 var Crawler = require("crawler");
+var logger = require('winston');
 
 var crawler = new Crawler({
   maxConnections: 1,
@@ -18,7 +19,7 @@ var crawler = new Crawler({
     } else {
       var $ = res.$;
       $("a[href^='http://shanghai.anjuke.com/sale/p']").each(function(i,url){
-        console.log($(url).attr('href'));
+        logger.info($(url).attr('href'),{timestamp: Date.now(), pid: process.pid});
       });
 
       //console.log($('title').text());

@@ -2,6 +2,7 @@
   "name": "application-name",
   "version": "0.0.1",
   "dependencies": {
-    "crawler": "^1.0.1"
+    "crawler": "^1.0.1",
+    "winston": "^2.3.0"
   }
 }
