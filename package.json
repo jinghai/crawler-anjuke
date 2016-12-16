@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "crawler": "^1.0.1",
+    "cron": "^1.1.1",
     "mongoose": "^4.7.2",
     "winston": "^2.3.0"
   }
