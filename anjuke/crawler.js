@@ -3,6 +3,15 @@
  */
 var Crawler = require("simplecrawler");
 var cheerio = require('cheerio');
+
+Queue     = require("./simplecrawler-queue-mongo");
+mongoose  = require("mongoose");
+
+mongoose.connect("localhost/test");
+
+
+
+
 var initialURL = "http://shanghai.anjuke.com/";
 var crawler = Crawler(initialURL);
 //匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
@@ -10,7 +19,7 @@ var regenTargetReg = /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i;
 var staticResourcesReg = /\.(png|jpg|jpeg|gif|ico|css|js|csv|doc|docx|pdf)+/i;
 var conditionID = crawler.addFetchCondition(function (queueItem, stateData) {//发现以后决定是否放入加载队列
     //console.log("FetchCondition:",queueItem.url,!staticResourcesReg.test(queueItem.url));
-    return !staticResourcesReg.test(queueItem.url) && regenTargetReg.test(queueItem.url);
+    return /*!staticResourcesReg.test(queueItem.url) &&*/ regenTargetReg.test(queueItem.url);
 });
 
 
@@ -25,13 +34,17 @@ crawler.scanSubdomains = true;
 crawler.userAgent = 'Mozilla/5.0 (Windows NT 5.2) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30';
 crawler.acceptCookies = false;
 crawler.on("crawlstart", function () {
-    console.log("crawlstart");
+    //console.log("crawlstart");
+});
+crawler.on("queueadd", function (queueItem) {
+    //console.log("queueadd",queueItem.url);
 });
 crawler.on("discoverycomplete", function (queueItem, resources) {
     //console.log("discoverycomplete", queueItem, resources);
     //console.log("discoverycomplete", queueItem.url, resources);
 });
 crawler.on("fetchstart", function (queueItem, requestOptions) {
+    //console.log("fetchstart",requestOptions)
     //console.log("fetchstart", queueItem.url, Date());
     //console.log("fetchstart", queueItem, requestOptions);
 });
@@ -41,6 +54,7 @@ crawler.on("fetchheaders", function (queueItem, responseObject) {
 });
 crawler.on("fetchcomplete", function (queueItem, responseBuffer, response) {
     console.log("fetchcomplete", queueItem.url, Date());
+    var next = this.wait();
     if (regenTargetReg.test(queueItem.url)) {
         $ = cheerio.load(responseBuffer);
         //上海房产网 > 上海房价 > 徐汇房价 > 徐家汇房价
@@ -63,6 +77,7 @@ crawler.on("fetchcomplete", function (queueItem, responseBuffer, response) {
         //0.53% ↑
         var yoy = yoyNode.text().split("%")[0];
         var regenTarget = {
+            url:queueItem.url,
             regionName: regionName,
             regionPrice: regionPrice,
             regionRelation: regionRelation,
@@ -73,8 +88,9 @@ crawler.on("fetchcomplete", function (queueItem, responseBuffer, response) {
         }
 
         console.log(regenTarget);
+        crawler.stop();
     }
-
+    next();
 
     // console.log("fetchcomplete", responseBuffer, response);
 });
@@ -92,4 +108,3 @@ crawler.on("complete", function () {
     console.log("complete");
 });
 crawler.start();
-console.log(crawler.host)
