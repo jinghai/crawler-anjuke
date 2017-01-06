@@ -4,16 +4,12 @@
 var Crawler = require("simplecrawler");
 var cheerio = require('cheerio');
 
-Queue     = require("./simplecrawler-queue-mongo");
-mongoose  = require("mongoose");
-
-mongoose.connect("localhost/test");
-
-
 
 
 var initialURL = "http://shanghai.anjuke.com/";
 var crawler = Crawler(initialURL);
+
+
 //匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
 var regenTargetReg = /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i;
 var staticResourcesReg = /\.(png|jpg|jpeg|gif|ico|css|js|csv|doc|docx|pdf)+/i;

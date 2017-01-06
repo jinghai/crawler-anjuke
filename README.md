@@ -9,3 +9,4 @@ https://github.com/JacksonTian/eventproxy
 https://github.com/lzrski/node-simplecrawler-queue-mongo
 
 lodash
+debug
