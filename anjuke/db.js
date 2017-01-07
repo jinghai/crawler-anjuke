@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/1/6.
  */
 var mongoose = require('mongoose');
+mongoose.set('debug', true);
 //使用环境自己的Promise
 mongoose.Promise = global.Promise;
 mongoose.connection.on('connected', function(){
@@ -15,7 +16,7 @@ mongoose.connection.on('disconnected', function(){
 });
 
 mongoose
-  .connect('mongodb://192.168.22.67/test')
+  .connect('mongodb://192.168.2.67/test')
   .then(function(){
     console.log("Connectioned");
   })
@@ -23,17 +24,33 @@ mongoose
     console.log("conn err:",err);
   });
 
-console.log("aaa");
 
-var Cat = mongoose.model('Cat', { name: String });
-console.log("bbb");
-var kitty = new Cat({ name: 'Zildjian' });
-kitty
+
+var Cat = mongoose.model('Cat', {
+  名称: String ,
+  售价:{}
+});
+
+var kitty = new Cat({
+  名称: 'Zildjian',
+  售价:{2016:{01:3000,02:3500}}
+});
+/*kitty
   .save()
   .then(function(doc){
     console.log(doc.name," save ok");
   })
   .catch(function(err){
     console.log("save err:",err);
-  });
-console.log("ccc");
+  });*/
+
+
+//db.cats.find({名称:"Zildjian",售价:{2016:{1:{$exists:true}}}})
+//db.cats.find({名称:"Zildjian",售价:{$ne:null}})
+
+Cat.findOne({名称:"Zildjian",售价:{$ne:null}})
+.where('售价.2016.1!=null')
+  .select('售价.2016')
+  .exec(function(err,doc){
+  console.log(doc);
+});
