@@ -48,9 +48,9 @@ var kitty = new Cat({
 //db.cats.find({名称:"Zildjian",售价:{2016:{1:{$exists:true}}}})
 //db.cats.find({名称:"Zildjian",售价:{$ne:null}})
 
-Cat.findOne({名称:"Zildjian",售价:{$ne:null}})
-.where('售价.2016.1!=null')
-  .select('售价.2016')
+Cat.find({名称:"Zildjian",售价:{$ne:null}})
+.where('售价.2016.01!=null')
+  .select('售价.2016.1')
   .exec(function(err,doc){
   console.log(doc);
 });
