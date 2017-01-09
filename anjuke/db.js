@@ -48,9 +48,17 @@ var kitty = new Cat({
 //db.cats.find({名称:"Zildjian",售价:{2016:{1:{$exists:true}}}})
 //db.cats.find({名称:"Zildjian",售价:{$ne:null}})
 
-Cat.find({名称:"Zildjian",售价:{$ne:null}})
+/*Cat.find({名称:"Zildjian",售价:{$ne:null}})
 .where('售价.2016.01!=null')
   .select('售价.2016.1')
   .exec(function(err,doc){
   console.log(doc);
-});
+});*/
+
+Cat.findOne({名称:"Zildjian",售价:{$ne:null}})
+  .exec(function(err,doc){
+    Cat.update({_id:doc._id},{$set:{"售价.2016.3":2000}})
+      .then(function(doc){
+        console.log("update :",doc)
+      });
+  });
