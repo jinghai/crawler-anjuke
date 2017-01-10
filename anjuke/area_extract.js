@@ -4,7 +4,7 @@
 
 var extractor = {
   target : /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i,
-  handler:function($){
+  handler:function($,queueItem, responseBuffer, response){
     //上海房产网 > 上海房价 > 徐汇房价 > 徐家汇房价
     var regionRelation = $(".crumb").text().replace(/房价/g, '').replace(/\s/g, '').split(">");
     regionRelation.shift();
