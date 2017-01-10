@@ -3,8 +3,8 @@
  */
 
 var extractor = {
-  targetReg : /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i,
-  extractData:function($){
+  target : /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i,
+  handler:function($){
     //上海房产网 > 上海房价 > 徐汇房价 > 徐家汇房价
     var regionRelation = $(".crumb").text().replace(/房价/g, '').replace(/\s/g, '').split(">");
     regionRelation.shift();

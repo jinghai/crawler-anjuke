@@ -5,6 +5,7 @@
     "cheerio": "^0.22.0",
     "crawler": "^1.0.1",
     "cron": "^1.1.1",
+    "lodash": "^4.17.4",
     "mongoose": "^4.7.2",
     "simplecrawler": "^1.0.3",
     "simplecrawler-queue-mongo": "^0.1.8",
