@@ -19,6 +19,7 @@ mongoose
   .connect('mongodb://192.168.2.67/test')
   .then(function(){
     console.log("Connectioned");
+    mongoose.disconnect();
   })
   .catch(function(err){
     console.log("conn err:",err);
@@ -43,7 +44,7 @@ var area = new mongoose.Schema({
 });
 
 
-var Cat = mongoose.model('Cat', {
+/*var Cat = mongoose.model('Cat', {
   名称: String ,
   售价:{}
 });
@@ -59,7 +60,7 @@ kitty
   })
   .catch(function(err){
     console.log("save err:",err);
-  });
+  });*/
 
 
 //db.cats.find({名称:"Zildjian",售价:{2016:{1:{$exists:true}}}})

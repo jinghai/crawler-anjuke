@@ -1,4 +1,6 @@
 # crawler-anjuke
+http://mongoosejs.com/docs/index.html
+
 https://github.com/bda-research/node-crawler
 https://github.com/Automattic/mongoose
 https://github.com/winstonjs/winston
