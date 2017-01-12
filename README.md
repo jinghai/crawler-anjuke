@@ -12,3 +12,6 @@ https://github.com/lzrski/node-simplecrawler-queue-mongo
 
 lodash
 debug
+
+todo:
+自定义_id，更新规则
