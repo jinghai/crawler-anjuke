@@ -3,9 +3,13 @@
  */
 
 var extractor = {
+  //匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
   target : /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i,
-  handler:function($,queueItem, responseBuffer, response){
+  times:0,
+  handler:function($,queueItem, responseBuffer, response,crawler){
     //上海房产网 > 上海房价 > 徐汇房价 > 徐家汇房价
+    //上海房产网 > 上海房价 > 徐汇房价 > 淮海西路房价
+    //丹东房产网 > 丹东房价 > 振兴房价 > 振兴房价
     var regionRelation = $(".crumb").text().replace(/房价/g, '').replace(/\s/g, '').split(">");
     regionRelation.shift();
 
@@ -34,7 +38,11 @@ var extractor = {
       yoy: yoy,
       yoyType: yoyType
     }
-
+    this.times++
+    if(this.times>0){
+      console.log(this.times);
+      crawler.stop();
+    }
     console.log(regenTarget);
     return regenTarget;
   }

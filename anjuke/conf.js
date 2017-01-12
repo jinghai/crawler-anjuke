@@ -6,10 +6,14 @@ var conf = {
         initialURL:"http://shanghai.anjuke.com/"
     },
 
+    db:{
+        connStr:"mongodb://192.168.2.67/test",
+        debug:true
+    },
+
     extractors:[{
-        //匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
-        target:/^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i,
-        handler:"./area_extract.js"
+        handler:"./area_extract.js",
+        schema:{}
     }]
 
 

@@ -29,12 +29,24 @@ crawler.filterByDomain = true;
 crawler.scanSubdomains = true;
 crawler.userAgent = 'Mozilla/5.0 (Windows NT 5.2) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.122 Safari/534.30';
 crawler.acceptCookies = false;
+
+//不自动发现,只加载初始化url（自定义发现规则）
+/*crawler.discoverResources = function(buffer, queueItem) {
+    /!*$ = cheerio.load(buffer.toString("utf8"));
+
+    return $("a[href]").map(function () {
+        return $(this).attr("href");
+    }).get();*!/
+};*/
+
+
 crawler.on("crawlstart", function () {
     //console.log("crawlstart");
 });
 crawler.on("queueadd", function (queueItem) {
     //console.log("queueadd",queueItem.url);
 });
+//discover
 crawler.on("discoverycomplete", function (queueItem, resources) {
     //console.log("discoverycomplete", queueItem, resources);
     //console.log("discoverycomplete", queueItem.url, resources);
@@ -84,7 +96,7 @@ crawler.on("fetchcomplete", function (queueItem, responseBuffer, response) {
         }
 
         console.log(regenTarget);
-        crawler.stop();
+        //crawler.stop();
     }
     next();
 

@@ -24,6 +24,23 @@ mongoose
     console.log("conn err:",err);
   });
 
+var date = new Date();
+var year = date.getYear();
+var month = date.getMonth();
+
+
+var area = new mongoose.Schema({
+  title:  String,
+  author: String,
+  body:   String,
+  comments: [{ body: String, date: Date }],
+  date: { type: Date, default: Date.now },
+  hidden: Boolean,
+  meta: {
+    votes: Number,
+    favs:  Number
+  }
+});
 
 
 var Cat = mongoose.model('Cat', {
@@ -35,14 +52,14 @@ var kitty = new Cat({
   名称: 'Zildjian',
   售价:{2016:{01:3000,02:3500}}
 });
-/*kitty
+kitty
   .save()
   .then(function(doc){
     console.log(doc.name," save ok");
   })
   .catch(function(err){
     console.log("save err:",err);
-  });*/
+  });
 
 
 //db.cats.find({名称:"Zildjian",售价:{2016:{1:{$exists:true}}}})
@@ -55,10 +72,11 @@ var kitty = new Cat({
   console.log(doc);
 });*/
 
+/*
 Cat.findOne({名称:"Zildjian",售价:{$ne:null}})
   .exec(function(err,doc){
     Cat.update({_id:doc._id},{$set:{"售价.2016.3":2000}})
       .then(function(doc){
         console.log("update :",doc)
       });
-  });
+  });*/
