@@ -14,4 +14,15 @@ lodash
 debug
 
 todo:
-自定义_id，更新规则
+多个extractor并发调用，异步等待问题
+异常
+日志
+重构
+stop停止数据库连接问题
+extractor无法操作多个数据库
+
+
+target数组和function支持
+helpUrl支持
+http模块
+队列模块

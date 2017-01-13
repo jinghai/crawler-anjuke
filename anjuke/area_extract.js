@@ -5,11 +5,12 @@
 var extractor = {
   //提取器名称，对应数据库表名
   name: 'area',//板块
-  //网页是否由它处理的依据，如匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
-  target: /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i,
+  //  网页是否由它处理的依据，如匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
+  //  /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i
+  target: /^http:\/\/shanghai\.anjuke\.com\/market(\/?)/i,
   schema: {
     url: String,
-    name: String,//同板块名称
+    name: String,//市-区县-板块 组合名称（无区县、板块不组合）
     area: String,//板块名称
     district: String,//区/县
     city: String,
@@ -24,8 +25,14 @@ var extractor = {
     letter: String,//拼音首字母
     point: Object,//坐标
   },
+  //数据唯一标识(字段值连接后md5存放于__k)，若数据已存在不做更新
+  keys: ["name", "year", "month"],
+  model: null,//数据模型对象，运行时注入
+  crawler: null,//爬虫对象，运行时注入
+  mongoose: null,//数据库对象，运行时注入
   times: 0,
-  handler: function ($, queueItem, responseBuffer, response, crawler) {
+  //无返回值框架不会保存，可使用new this.model(data)自行操作
+  handler: function ($, queueItem, responseBuffer, response) {
     //上海房产网 > 上海房价
     //上海房产网 > 上海房价 > 徐汇房价 > 徐家汇房价
     //上海房产网 > 上海房价 > 徐汇房价 > 淮海西路房价
@@ -34,7 +41,7 @@ var extractor = {
     regionRelation.shift();
     //-->[上海,徐汇,徐家汇]
 
-    var area=null, district=null, city=null;
+    var area = null, district = null, city = null;
     city = regionRelation[0];
     if (regionRelation.length > 1) {
       district = regionRelation[1];
@@ -42,11 +49,16 @@ var extractor = {
     if (regionRelation.length > 2) {
       area = regionRelation[2];
     }
-    var name = regionRelation[regionRelation.length - 1];
+    var name = city;
+    if (district) name += "-" + district;
+    if (area) name += "-" + area;
 
 
     var priceNode = $("div.trendR");
     var price = priceNode.find("h2.highLight>em").eq(0).text();
+    if ('暂无数据' === price) {
+      price = -1;
+    }
 
     //环比month-on-month
     var momNode = priceNode.find("h2>i").eq(0);
@@ -61,7 +73,7 @@ var extractor = {
 
     //http://shanghai.anjuke.com/market/lingangxincheng/
     var py = queueItem.url.split("/")[4] || "";
-    if(!py){
+    if (!py) {
       py = queueItem.url.split(".")[0].split("/")[2]
     }
     var letter = py.substr(0, 1).toUpperCase();
@@ -75,7 +87,7 @@ var extractor = {
       district: district,
       city: city,
       year: date.getFullYear(),
-      month: date.getMonth()+1,
+      month: date.getMonth() + 1,//getMonth 0~11
       price: price,
       mom: mom,
       momUpDown: momUpDown,
@@ -89,10 +101,11 @@ var extractor = {
 
     this.times++
     if (this.times > 0) {
-      console.log(this.times);
-      crawler.stop();
+      //this.crawler.stop();
+      //this.mongoose.disconnect();
     }
     //console.log(regenTarget);
+    console.log(this.times, queueItem.url);
     return result;
   }
 }

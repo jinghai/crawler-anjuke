@@ -2,9 +2,11 @@
   "name": "application-name",
   "version": "0.0.1",
   "dependencies": {
+    "async": "^2.1.4",
     "cheerio": "^0.22.0",
     "crawler": "^1.0.1",
     "cron": "^1.1.1",
+    "crypto": "0.0.3",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.2",
     "simplecrawler": "^1.0.3",
