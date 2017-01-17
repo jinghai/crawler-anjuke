@@ -3,11 +3,13 @@
  */
 
 var extractor = {
-  //提取器名称，对应数据库表名
+  //表名
   name: 'area',//板块
   //  网页是否由它处理的依据，如匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
   //  /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i
   target: /^http:\/\/shanghai\.anjuke\.com\/market(\/?)/i,
+  //正则，加入爬取队列，只为寻找target
+  helpUrl:null,
   schema: {
     url: String,
     name: String,//市-区县-板块 组合名称（无区县、板块不组合）

@@ -2,6 +2,8 @@
  * Created by yneos on 2017/1/1.
  */
 var conf = {
+  //【秒】【分】【小时】【日】【月】【周】 *所有 ?不指定 -区间 */5每5
+  cron:"0 30 0 1 * ?",//每月1号0:30
   crawler: {
     url: "http://shanghai.anjuke.com/",
     //url:"http://shanghai.anjuke.com/market/pudong/",

@@ -14,15 +14,24 @@ lodash
 debug
 
 todo:
-多个extractor并发调用，异步等待问题
+
 异常
 日志
 重构
 stop停止数据库连接问题
-extractor无法操作多个数据库
+停止前导出队列，启动后恢复队列
 
 
-target数组和function支持
+target支持function支持
 helpUrl支持
 http模块
 队列模块
+
+
+任务｛start,stop｝
+爬虫
+定时器
+数据库
+
+每次请求变换usrAgent
+自动寻找代理
