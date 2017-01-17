@@ -1,13 +1,13 @@
 /**
  * Created by yneos on 2017/1/1.
  */
-var Crawler = require("simplecrawler");
+var Crawler = require("../lib/Crawler.js");
 var cheerio = require('cheerio');
 
 
 
 var initialURL = "http://shanghai.anjuke.com/";
-var crawler = Crawler(initialURL);
+var crawler = new Crawler(initialURL);
 
 
 //匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
@@ -96,7 +96,7 @@ crawler.on("fetchcomplete", function (queueItem, responseBuffer, response) {
         }
 
         console.log(regenTarget);
-        //crawler.stop();
+        crawler.stop();
     }
     next();
 
@@ -114,5 +114,8 @@ crawler.on("queueadd", function (queueItem) {
 
 crawler.on("complete", function () {
     console.log("complete");
+});
+crawler.on("stop", function () {
+    console.log("stop");
 });
 crawler.start();
