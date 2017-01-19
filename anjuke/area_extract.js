@@ -9,7 +9,7 @@ var extractor = {
   //  /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i
   target: /^http:\/\/shanghai\.anjuke\.com\/market(\/?)/i,
   //正则，加入爬取队列，只为寻找target
-  helpUrl:null,
+  helpUrl:/^http:\/\/shanghai\.anjuke\.com\/market(\/?)/i,
   schema: {
     url: String,
     name: String,//市-区县-板块 组合名称（无区县、板块不组合）
@@ -25,7 +25,7 @@ var extractor = {
     yoyUpDown: String,//环比上升/下降
     py: String,//拼音
     letter: String,//拼音首字母
-    point: Object,//坐标
+    //point: Object,//坐标
   },
   //数据唯一标识(字段值连接后md5存放于__k)，若数据已存在不做更新
   keys: ["name", "year", "month"],
@@ -96,8 +96,7 @@ var extractor = {
       yoy: yoy,//环比
       yoyUpDown: yoyUpDown,
       py: py,
-      letter: letter,
-      point: null,
+      letter: letter
     }
 
 

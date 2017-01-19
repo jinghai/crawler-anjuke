@@ -21,9 +21,10 @@ var conf = {
     debug: false
   },
 
-  extractors: [{
-    handler: "./area_extract.js"
-  }]
+  extractors: [
+    //{handler: "./area_extract.js"},
+    {handler:"./community_extract.js"}
+  ]
 
 
 }
