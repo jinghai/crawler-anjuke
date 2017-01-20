@@ -106,7 +106,7 @@ var extractor = {
       //this.mongoose.disconnect();
     }
     //console.log(regenTarget);
-    console.log(this.times, queueItem.url);
+    //console.log(this.times, queueItem.url);
     return result;
   }
 }

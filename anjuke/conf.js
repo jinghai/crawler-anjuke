@@ -22,7 +22,7 @@ var conf = {
   },
 
   extractors: [
-    //{handler: "./area_extract.js"},
+    {handler: "./area_extract.js"},
     {handler:"./community_extract.js"}
   ]
 

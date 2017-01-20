@@ -82,7 +82,7 @@ var extractor = {
       this.crawler.stop();
     }
     //console.log(regenTarget);
-    console.log(this.times, queueItem.url);
+    //console.log(this.times, queueItem.url);
     return result;
   }
 }
