@@ -79,7 +79,7 @@ var extractor = {
 
     this.times++
     if (this.times > 0) {
-      this.crawler.stop();
+      //this.crawler.stop();
     }
     //console.log(regenTarget);
     //console.log(this.times, queueItem.url);
