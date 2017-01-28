@@ -10,7 +10,7 @@ var conf = {
     //url:"http://shanghai.anjuke.com/market/lingangxincheng/"
 
     maxConcurrency: 1,
-    interval: 1000,
+    interval: 3000,
     acceptCookies: false,
     maxDepth: 0
   },

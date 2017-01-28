@@ -7,10 +7,10 @@ var extractor = {
   name: '小区',
   //  http://shanghai.anjuke.com/community/view/1670
   //  http://shanghai.anjuke.com/community/view/
-  target: /^http:\/\/shanghai\.anjuke\.com\/community\/view(\/?)/i,
+  target: /^http:\/\/shanghai\.anjuke\.com\/community\/view(\/?)\/+[0-9]+$/i,
   //正则，加入爬取队列，只为寻找target
   //http://shanghai.anjuke.com/community/p2/
-  helpUrl:/^http:\/\/shanghai\.anjuke\.com\/community(\/?)/i,
+  //helpUrl:/^http:\/\/shanghai\.anjuke\.com\/community(\/?)/i,
   schema: {
     url: String,
     anjukeId:String,
@@ -47,17 +47,28 @@ var extractor = {
     //console.log(city,district,area,name);
 
     //http://shanghai.anjuke.com/map/sale/?from=commtitle#l1=31.110616364328&l2=121.35934431231&l3=18&commid=1670&commname=xxx
-    var locationUrl = $(".comm-title.clearfix").find("a").attr("href").split("#")[1].split("&");
-    var lat = parseFloat(locationUrl[0].replace("l1=", ""));
-    var lng = parseFloat(locationUrl[1].replace("l2=", ""));
-    var anjukeId = locationUrl[3].replace("commid=", "");
+    var locationUrl = $(".comm-title.clearfix").find("a").attr("href");
+    var lat = null,lng = null;
+    if(locationUrl){
+      locationUrl = locationUrl.split("#")[1].split("&");
+      lat = parseFloat(locationUrl[0].replace("l1=", ""));
+      lng = parseFloat(locationUrl[1].replace("l2=", ""));
+    }
+
+    //var anjukeId = locationUrl[3].replace("commid=", "");
+    var str = queueItem.url.split('\/');
+    var anjukeId = str[str.length-1];
 
     //console.log(anjukeId,lat,lng);
 
     var price = $("em.comm-avg-price").text();
-    //上涨0.52%
-    var mom = $(".price-tip>strong").eq(0).text().replace(/[^0-9.]/ig, "");
-    var momUpDown = $(".price-tip>strong").eq(0).hasClass("up") ? "up" : "down";
+    var mom=null,momUpDown=null;
+    if(price.indexOf("暂无")==-1){
+      //上涨0.52%
+       mom = $(".price-tip>strong").eq(0).text().replace(/[^0-9.]/ig, "");
+       momUpDown = $(".price-tip>strong").eq(0).hasClass("up") ? "up" : "down";
+    }
+
     //console.log(price,momUpDown,mom);
 
     var date = new Date();

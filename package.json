@@ -7,8 +7,10 @@
     "crawler": "^1.0.1",
     "cron": "^1.1.1",
     "crypto": "0.0.3",
+    "iconv-lite": "^0.4.15",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.2",
+    "request": "^2.79.0",
     "simplecrawler": "^1.0.3",
     "simplecrawler-queue-mongo": "^0.1.8",
     "winston": "^2.3.0"
