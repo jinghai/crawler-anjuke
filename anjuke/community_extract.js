@@ -27,9 +27,9 @@ var extractor = {
   },
   //数据唯一标识(字段值连接后md5存放于__k)，若数据已存在不做更新
   keys: ["name", "year", "month"],
-  model: null,//数据模型对象，运行时注入
-  crawler: null,//爬虫对象，运行时注入
-  mongoose: null,//数据库对象，运行时注入
+  //model: null,//数据模型对象，运行时注入
+  //crawler: null,//爬虫对象，运行时注入
+  //mongoose: null,//数据库对象，运行时注入
   times: 0,
   //无返回值框架不会保存，可使用new this.model(data)自行操作
   handler: function ($, queueItem, responseBuffer, response) {

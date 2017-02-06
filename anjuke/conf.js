@@ -3,16 +3,11 @@
  */
 var conf = {
   //【秒】【分】【小时】【日】【月】【周】 *所有 ?不指定 -区间 */5每5
-  cron:"0 30 0 1 * ?",//每月1号0:30
+  cron:"00 00 08 1,10,20 * *",//每月1号,10号,20号早上8:30
   crawler: {
     url: "http://shanghai.anjuke.com/",
-    //url:"http://shanghai.anjuke.com/market/pudong/",
-    //url:"http://shanghai.anjuke.com/market/lingangxincheng/"
-
-    maxConcurrency: 1,
-    interval: 10000,
-    acceptCookies: false,
-    maxDepth: 0
+    maxConcurrency: 2,
+    interval: 2000
   },
 
   db: {
@@ -22,7 +17,7 @@ var conf = {
   },
 
   extractors: [
-    //{handler: "./area_extract.js"},
+    {handler: "./area_extract.js"},
     {handler:"./community_extract.js"}
   ]
 
