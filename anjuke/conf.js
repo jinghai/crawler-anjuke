@@ -10,6 +10,7 @@ var conf = {
         url: "http://shanghai.anjuke.com/",
         interval: 10 * 1000
     },
+
     extractors: [
         {handler: "./area_extract.js"},
         {handler: "./community_extract.js"}

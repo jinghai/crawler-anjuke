@@ -62,8 +62,11 @@ var extractor = {
     //console.log(anjukeId,lat,lng);
 
     var price = $("em.comm-avg-price").text();
+    if(price.indexOf("暂无")>0){
+      price = -1;
+    }
     var mom=null,momUpDown=null;
-    if(price.indexOf("暂无")==-1){
+    if(price!=-1){
       //上涨0.52%
        mom = $(".price-tip>strong").eq(0).text().replace(/[^0-9.]/ig, "");
        momUpDown = $(".price-tip>strong").eq(0).hasClass("up") ? "up" : "down";
