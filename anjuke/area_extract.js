@@ -4,7 +4,7 @@
 
 var extractor = {
   //表名
-  name: 'area',//板块
+  name: '安居客-上海-板块均价',//板块
   //  网页是否由它处理的依据，如匹配区域网址 http[s]://shanghai.anjuke.com/market[/]...
   //  /^http(s?):\/\/shanghai\.anjuke\.com\/market(\/?)/i
   target: /^http:\/\/shanghai\.anjuke\.com\/market(\/?)/i,
