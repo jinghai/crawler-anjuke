@@ -12,7 +12,7 @@ var conf = {
 
   db: {
     //'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
-    url: "mongodb://192.168.2.67/test",
+    url: "mongodb://192.168.2.67/crawler",
     debug: false
   },
 
