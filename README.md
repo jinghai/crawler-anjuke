@@ -11,6 +11,8 @@ https://github.com/JacksonTian/eventproxy
 https://github.com/cgiffard/node-simplecrawler
 https://github.com/lzrski/node-simplecrawler-queue-mongo
 
+https://github.com/winstonjs/winston#using-the-default-logger
+
 lodash
 debug
 

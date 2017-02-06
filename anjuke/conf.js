@@ -7,7 +7,7 @@ var conf = {
   crawler: {
     url: "http://shanghai.anjuke.com/",
     maxConcurrency: 2,
-    interval: 6000
+    interval: 10000
   },
 
   db: {

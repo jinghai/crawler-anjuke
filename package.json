@@ -13,6 +13,6 @@
     "request": "^2.79.0",
     "simplecrawler": "^1.0.3",
     "simplecrawler-queue-mongo": "^0.1.8",
-    "winston": "^2.3.0"
+    "winston": "^2.3.1"
   }
 }
