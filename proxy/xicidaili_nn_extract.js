@@ -5,7 +5,7 @@
  */
 
 var extractor = {
-    name: 'proxys',//代理服务器
+    name: '代理服务器',//代理服务器
     target: /^http:\/\/www\.xicidaili\.com\/nn(\/?)/i,
     schema: {
         url: String,
