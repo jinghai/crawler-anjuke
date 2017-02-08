@@ -14,9 +14,7 @@ https://github.com/lzrski/node-simplecrawler-queue-mongo
 https://github.com/winstonjs/winston#using-the-default-logger
 
 
-v0.0.1
-动态变换userAgent
-自动发现地址
+TODO-
 
 v0.1.0
 时间戳转时分秒(用时)
@@ -27,8 +25,8 @@ v0.3.0
 
 v0.2.0
 npm命令行启动
+重构
 
 v0.4.0
 测试代码
-重构
 doc生成
