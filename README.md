@@ -14,12 +14,21 @@ https://github.com/lzrski/node-simplecrawler-queue-mongo
 https://github.com/winstonjs/winston#using-the-default-logger
 
 
+v0.0.1
+动态变换userAgent
+自动发现地址
 
-todo:
+v0.1.0
 时间戳转时分秒(用时)
 target需要支持数组（helpUrl）
-需要加入特性测试
-日志存数据库
-重构
+
+v0.3.0
+动态变换代理服务器支持
+
+v0.2.0
 npm命令行启动
+
+v0.4.0
+测试代码
+重构
 doc生成
