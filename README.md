@@ -20,6 +20,15 @@ v0.1.0
 时间戳转时分秒(用时)
 target需要支持数组（helpUrl）
 
+文件队列
+crawler.queue.freeze("mysavedqueue.json", function () {
+    process.exit();
+});
+crawler.queue.defrost("mysavedqueue.json");
+文件缓存
+var cacheFilePath = path.resolve("./");
+crawler.cache = new Crawler.cache(cacheFilePath);
+
 v0.3.0
 动态变换代理服务器支持
 
