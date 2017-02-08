@@ -4,7 +4,7 @@
 
 var extractor = {
   //表名
-  name: '安居客-上海-小区均价',
+  name: '安居客_上海_小区均价',
   //  http://shanghai.anjuke.com/community/view/1670
   //  http://shanghai.anjuke.com/community/view/
   target: /^http:\/\/shanghai\.anjuke\.com\/community\/view(\/?)\/+[0-9]+$/i,
