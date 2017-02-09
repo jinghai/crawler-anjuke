@@ -14,7 +14,6 @@ var extractor = {
                 var r = new RegExp(regString);
 
                 if (r.test(url)) {
-                    console.log(regString, url, i, r.test(url));
                     return true;
                 }
             }
@@ -32,12 +31,15 @@ var extractor = {
     },
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
-        //http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/21/01/02/210102001.html
-        //http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/31/02/30/310230101.html
-        var str = queueItem.url.split("/tjyqhdmhcxhfdm/");//2015/21/01/02/210102001.html
-        str = str[1].split("/");//
-        var year = str[0];
-        console.log(year)
+        var str = queueItem.url.split("/tjyqhdmhcxhfdm/");//http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/31/02/30/310230101.html
+        str = str[1].split("/");//2015/21/01/02/210102001.html
+        var year = str.shift();//str = 21/01/02/210102001.html
+        var level = 1;
+        if(str[0]!=="index.html"){
+            level = str.length+1;
+        }
+
+        console.log(queueItem.url,year,level);
 
         /*var rows = $('tr');
          var hosts = [];
