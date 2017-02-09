@@ -8,7 +8,7 @@ var conf = {
     dbUrl: "mongodb://192.168.2.67/crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     crawler: {
         url: "http://www.xicidaili.com/nn/",
-        interval: 3 * 1000
+        interval: 10 * 1000
     },
 
     extractors: [
