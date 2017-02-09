@@ -1,5 +1,6 @@
 /**
  * Created by yneos on 2017/1/1.
+ * 代理服务器
  */
 var conf = {
     //【秒】【分】【小时】【日】【月】【周】 *所有 ?不指定 -区间 */5每5
@@ -12,7 +13,7 @@ var conf = {
     },
 
     extractors: [
-        {handler: "./xicidaili_nn_extract.js"},
+        {handler: "./c_xingZhengQu.js"},
     ]
 
 
