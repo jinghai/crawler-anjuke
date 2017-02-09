@@ -6,7 +6,7 @@ var conf = {
     logLevel: 'debug',//debug|info|warn|error
     dbUrl: "mongodb://192.168.2.67/crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     crawler: {
-        url: "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/index.html",
+        url: "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/",
         interval: 1 * 1000
     },
 
