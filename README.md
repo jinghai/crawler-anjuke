@@ -44,3 +44,4 @@ doc生成
 每次限制爬取网页数量，达到后停止，间隔指定时间后继续
 cache原理与作用
 简单的proxyTestServer
+完善日志:request数量,traget数量
