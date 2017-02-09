@@ -6,7 +6,15 @@
 
 var extractor = {
     name: '行政区',
-    target: /^http:\/\/www\.stats\.gov\.cn\/tjsj\/tjbz\/tjyqhdmhcxhfdm\/2015(\/?)/i,
+    target: {test:function(url){
+        var year = new Date().getFullYear();
+        var regString = '^http:\/\/www\.stats\.gov\.cn\/tjsj\/tjbz\/tjyqhdmhcxhfdm\/'+year+'(\/?)';
+        var reg = new RegExp(regString, 'g');
+        //var reg = /^http:\/\/www\.stats\.gov\.cn\/tjsj\/tjbz\/tjyqhdmhcxhfdm\/2015(\/?)/i
+        var result = reg.test(url);
+        console.log(result);
+        return result;
+    }},
     schema: {
         名称:String,
         代码:String,
