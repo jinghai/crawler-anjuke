@@ -5,22 +5,15 @@
  */
 
 var extractor = {
-    name: '代理服务器',//代理服务器
+    name: '省',
     target: /^http:\/\/www\.stats\.gov\.cn\/tjsj\/tjbz\/tjyqhdmhcxhfdm\/2015\/index.html$/i,
     schema: {
         url: String,
-        ip: String,
-        port: String,
-        匿名度: String,
-        协议: String,
-        国家: String,
-        位置: String,
-        速度: Number,
-        收录时间: Date,
-        存活时间: Number,
-        最后验证时间: Date
+        city:String,
+        code:String,
+        year:String
     },
-    keys: ["ip", "port"],
+    keys: ["url"],
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
 
