@@ -5,19 +5,27 @@
  */
 
 var extractor = {
-    name: '省',
-    target: /^http:\/\/www\.stats\.gov\.cn\/tjsj\/tjbz\/tjyqhdmhcxhfdm\/2015\/index.html$/i,
+    name: '行政区',
+    target: /^http:\/\/www\.stats\.gov\.cn\/tjsj\/tjbz\/tjyqhdmhcxhfdm\/2015(\/?)/i,
     schema: {
-        url: String,
-        city:String,
-        code:String,
-        year:String
+        名称:String,
+        代码:String,
+        年:String,
+        城乡分类:String,
+        是直辖市:Boolean,
+        等级:Number,//[1-5]
+        分类:String,//[省/直辖市,市/辖区,区/区县,街道,社区]
     },
-    keys: ["url"],
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
+      //http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/21/01/02/210102001.html
+      //http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/31/02/30/310230101.html
+      var str = queueItem.url.split("/tjyqhdmhcxhfdm/");//2015/21/01/02/210102001.html
+      str = str[1].split("/");//
+      var year = str[0];
+      console.log(year)
 
-        var rows = $('tr');
+        /*var rows = $('tr');
         var hosts = [];
         for(var i=0,len=rows.length;i<len;i++){
             var cells = $(rows[i]).find('td');
@@ -37,9 +45,9 @@ var extractor = {
             if(obj.ip && obj.port){
                 hosts.push(obj)
             }
-        }
+        }*/
 
-        return hosts;
+        return null;
     }
 }
 
