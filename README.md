@@ -17,8 +17,8 @@ https://github.com/winstonjs/winston#using-the-default-logger
 TODO-
 
 v0.1.0
-时间戳转时分秒(用时)
-target需要支持数组（helpUrl）
+时间戳转时分秒(用时) OK
+target需要支持数组（helpUrl）OK
 
 文件队列
 crawler.queue.freeze("mysavedqueue.json", function () {
