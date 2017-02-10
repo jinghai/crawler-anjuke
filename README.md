@@ -1,19 +1,23 @@
 # crawler-anjuke
 http://mongoosejs.com/docs/index.html
-
+http://www.nodeclass.com/api/mongoose.html#quick_start
+https://github.com/winstonjs/winston#using-the-default-logger
 https://github.com/bda-research/node-crawler
 https://github.com/Automattic/mongoose
 https://github.com/winstonjs/winston
 https://github.com/kelektiv/node-cron
 https://github.com/node-schedule/node-schedule
-
 https://github.com/JacksonTian/eventproxy
 https://github.com/cgiffard/node-simplecrawler
+
+https://github.com/mitmproxy/mitmproxy
+https://github.com/nodejitsu/node-http-proxy    supports websockets
+https://github.com/h2non/toxy                   Full-featured
+https://github.com/alibaba/anyproxy
+http://anyproxy.io/cn/
+
+https://github.com/haisapan/ProxyScanner.NodeJs
 https://github.com/lzrski/node-simplecrawler-queue-mongo
-
-https://github.com/winstonjs/winston#using-the-default-logger
-
-
 TODO-
 
 v0.1.0
