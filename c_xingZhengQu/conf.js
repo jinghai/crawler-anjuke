@@ -3,11 +3,12 @@
  * 行政区
  */
 var conf = {
-    logLevel: 'debug',//debug|info|warn|error
+    logLevel: 'info',//debug|info|warn|error
     dbUrl: "mongodb://192.168.2.67/crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     crawler: {
-        url: "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/",
-        interval: 50
+        //url: "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/",
+        url:'http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/11/01/01/110101001.html',
+        interval: 1000
     },
 
     extractors: [
