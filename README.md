@@ -24,9 +24,9 @@ https://github.com/lzrski/node-simplecrawler-queue-mongo
 
 --动态代理服务器
 
---发布为npm包
+--发布为npm包 ??
 
---数据插入后的事件通知
+--数据插入后的事件通知 ??
 
 --限制爬取网页数量，达到后停止，间隔指定时间后继续
 
@@ -59,3 +59,8 @@ crawler.cache = new Crawler.cache(cacheFilePath);
 
 5.增加自定义target函数（参见c_xingZhengQu/e_index.js）
 
+6.logLevel为debug则不生成日志文件，只在控制台打印
+
+7.数据库增加了__url,__created 字段
+
+8.支持keys为空，当keys为空时，框架以__url字段为key.即只以url做为重复数据的判断条件

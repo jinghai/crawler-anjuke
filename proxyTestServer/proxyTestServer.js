@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/2/9.
  */
 var async = require('async');
+var request = require('request');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
@@ -10,10 +11,6 @@ var dburl = 'mongodb://192.168.2.56/_crawler';
 var tableName = 'proxys';
 
 var db = mongoose.createConnection(dburl);
-
-db.once('open', function callback() {
-    console.log('open ok')
-});
 
 var Schema = {
     url: String,
@@ -34,7 +31,6 @@ var proxyModel = db.model(tableName, schema);
 
 
 function getHost(callback) {
-    //怎么就查不到呢？
     proxyModel
         .findOne({
             匿名度:'高匿',
@@ -44,7 +40,7 @@ function getHost(callback) {
             ]
         })
         .then(function (proxy) {
-            console.log(proxy)
+            callback(null,proxy)
         })
 }
 
@@ -56,7 +52,18 @@ function updateHost(callback) {
 
 }
 
-getHost();
+/*request.get('http://www.baidu.com/',{/!*host:host,port:port,*!/timeout:1500,headers: {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*!/!*;q=0.8',
+    'Accept-Language': 'zh-CN,zh;q=0.8',
+    'Connection': 'close'
+}},function(error, response, body){
+    if (!error && response.statusCode == 200) {
+        console.log(body);
+    }else{
+
+    }
+})*/
 
 /*
  ProxyModel
