@@ -12,6 +12,7 @@
     "mongoose": "^4.7.2",
     "request": "^2.79.0",
     "simplecrawler": "^1.0.3",
+    "socks5-http-client": "^1.0.2",
     "winston": "^2.3.1"
   }
 }

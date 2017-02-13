@@ -3,7 +3,8 @@
  */
 var async = require('async');
 var request = require('request');
-var logger = require("../lib/logger.js")('debug', 'proxyTestServer');
+var Agent = require('socks5-http-client/lib/Agent');
+var logger = require("../lib/logger.js")('verbose', 'proxyTestServer');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
@@ -54,7 +55,7 @@ function getHost(callback) {
                 logger.debug("getHost", proxy.ip);
                 callback(null, proxy);
             } else {
-                logger.warn("getHost", 'no data found to test');
+                //logger.warn("getHost", 'no data found to test');
                 callback('no data found to test');
             }
 
@@ -66,41 +67,50 @@ function getHost(callback) {
 }
 
 
-// todo : sockt https://github.com/request/request/tree/master/examples
-// todo: 如何设置代理
+// 如何设置代理 http://blog.csdn.net/yuan882696yan/article/details/25052469
 function testHost(proxyEntity, callback) {
     var host = proxyEntity.ip;
     var port = proxyEntity.port;
-    var httptarget = 'http://www.data4pro.com/';
+    var httpTarget = 'http://www.data4pro.com/';
     var httpsTarget = 'https://www.baidu.com/';
-    var target = proxyEntity.协议 === 'HTTP' ? httptarget : httpsTarget;
+    var target = proxyEntity.协议 === 'HTTP' ? httpTarget : httpsTarget;
     var startTime = new Date();
 
-    var proxy = (proxyEntity.协议 === 'HTTP' ? "http://" : "https://") + host + ":" + port;
-
-    request.get(target, {
-        proxy: proxy, /*host: host, port: port,*/ timeout: 5000, headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36 ' + host,
+    var option = {
+        followRedirect: false,
+        timeout: 3000, headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36 ',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'zh-CN,zh;q=0.8',
-            //'Connection': 'close'
+            'Connection': 'close'
         }
-    }, function (error, response, body) {
+    }
+    if (proxyEntity.协议 === 'HTTP' || proxyEntity.协议 === 'HTTPS') {
+        option.proxy = (proxyEntity.协议 === 'HTTP' ? "http://" : "https://") + host + ":" + port;
+    } else {//socks5
+        option.agentClass = Agent;
+        option.agentOptions = {socksHost: host, socksPort: port}
+    }
+
+    request.get(target, option, function (error, response, body) {
         var endTime = new Date();
         var speed = endTime.getTime() - startTime.getTime();
-        if (!error && response.statusCode == 200) {
-            proxyEntity.state = 'available';
-        } else {
-            proxyEntity.state = 'unavailable';
-        }
 
         proxyEntity.errorMessage = error ? error.message : '';
         proxyEntity.code = response ? response.statusCode : -1
         proxyEntity.最后验证时间 = endTime;
         proxyEntity.speed = speed;
-        proxyEntity.testCount = proxyEntity.testCount ? proxyEntity.testCount++ : 1;
+        proxyEntity.testCount = proxyEntity.testCount ? ++proxyEntity.testCount : 1;
 
-        logger.info("test", proxy, target, proxyEntity.code, proxyEntity.errorMessage, proxyEntity.state, speed);
+        if (!error && response.statusCode == 200) {
+            proxyEntity.state = 'available';
+            proxyEntity.successCount = proxyEntity.sucessCount ? ++proxyEntity.sucessCount : 1;
+            proxyEntity.successRate = proxyEntity.successCount / proxyEntity.testCount;
+        } else {
+            proxyEntity.state = 'unavailable';
+        }
+
+        logger.info("test", target, option.proxy, proxyEntity.code, proxyEntity.errorMessage, proxyEntity.state, speed);
 
 
         callback(null, proxyEntity);
@@ -118,7 +128,9 @@ function updateHost(proxy, callback) {
                 errorMessage: proxy.errorMessage,
                 code: proxy.code,
                 speed: proxy.speed,
-                testCount: proxy.testCount
+                testCount: proxy.testCount,
+                successCount:proxy.successCount,
+                successRate:proxy.successRate
             }
         },
         function (err, doc) {
@@ -167,10 +179,9 @@ async.whilst(
 
 /**
  * Todo:
- * 查询没有最后测试时间 或 最后测试时间在2小时以前的数据
- * 测试区分http和https
+ * 测试区分http和https 和socek
  * 记录测试次数
- * 记录响应时间
+ * 记录成功次数
+ * 计算成功率
  * 写成循环任务（单条/并发）
- * 日志
  */
