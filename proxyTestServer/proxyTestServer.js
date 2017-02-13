@@ -6,8 +6,8 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.set('debug', true);
 
-var dburl = 'mongodb://192.168.2.56/ttt';
-var tableName = 'ttt';
+var dburl = 'mongodb://192.168.2.56/_crawler';
+var tableName = 'proxys';
 
 var db = mongoose.createConnection(dburl);
 
@@ -29,15 +29,20 @@ var Schema = {
     最后验证时间: Date
 }
 //http://www.nodeclass.com/api/mongoose.html#schema_Schema
-var schema = new mongoose.Schema(Schema,{ strict: false });
+var schema = new mongoose.Schema(Schema, {strict: false});
 var proxyModel = db.model(tableName, schema);
 
 
 function getHost(callback) {
     //怎么就查不到呢？
     proxyModel
-        //.findOne({$or: [{最后验证时间: null}]})
-        .find()
+        .findOne({
+            匿名度:'高匿',
+            国家:'中国',
+            $or: [
+                {最后验证时间: null}
+            ]
+        })
         .then(function (proxy) {
             console.log(proxy)
         })
@@ -84,7 +89,7 @@ getHost();
 //Tank.update({ _id: id }, { $set: { size: 'large' }}, callback);
 
 /*
-Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, function (err, tank) {
-    if (err) return handleError(err);
-    res.send(tank);
-});*/
+ Tank.findByIdAndUpdate(id, { $set: { size: 'large' }}, function (err, tank) {
+ if (err) return handleError(err);
+ res.send(tank);
+ });*/

@@ -18,34 +18,19 @@ http://anyproxy.io/cn/
 
 https://github.com/haisapan/ProxyScanner.NodeJs
 https://github.com/lzrski/node-simplecrawler-queue-mongo
-TODO-
 
-v0.1.0
-时间戳转时分秒(用时) OK
-target需要支持数组（helpUrl）OK
 
-文件队列
+-TODO-
+
+--文件队列
 crawler.queue.freeze("mysavedqueue.json", function () {
     process.exit();
 });
 crawler.queue.defrost("mysavedqueue.json");
-文件缓存
+--文件缓存
 var cacheFilePath = path.resolve("./");
 crawler.cache = new Crawler.cache(cacheFilePath);
-
-v0.3.0
-动态变换代理服务器支持
-
-v0.2.0
-npm命令行启动
-重构
-
-v0.4.0
-测试代码
-doc生成
-
-
-每次限制爬取网页数量，达到后停止，间隔指定时间后继续
-cache原理与作用
-简单的proxyTestServer
-完善日志:request数量,traget数量
+--动态代理服务器
+--开发方式转为npm
+--数据插入后的事件通知
+--限制爬取网页数量，达到后停止，间隔指定时间后继续
