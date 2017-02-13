@@ -4,7 +4,7 @@
 var async = require('async');
 var request = require('request');
 var Agent = require('socks5-http-client/lib/Agent');
-var logger = require("../lib/logger.js")('verbose', 'proxyTestServer');
+var logger = require("../lib/logger.js")('info', 'proxyTestServer');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
