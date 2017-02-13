@@ -41,3 +41,14 @@ crawler.queue.defrost("mysavedqueue.json");
 var cacheFilePath = path.resolve("./");
 crawler.cache = new Crawler.cache(cacheFilePath);
 
+
+--更新2017.2.13--
+1.爬虫目录名称和爬虫启动文件名称的规约
+规约如下：
+1.爬虫目录以"c_"开头
+2.爬虫的启动文件名与爬虫目录同名
+3.数据抽取器以"e_"开头
+4.启动方式改为pm2启动
+5.增加多个target支持（参见c_proxy/e_xicidaili.js）
+6.数据抽取器支持返回一个数组，以支持一次提取多条数据（参见c_proxy/e_xicidaili.js）
+7.增加自定义target函数（参见c_xingZhengQu/e_index.js）
