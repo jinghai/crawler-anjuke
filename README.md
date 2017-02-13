@@ -22,6 +22,16 @@ https://github.com/lzrski/node-simplecrawler-queue-mongo
 
 -TODO-
 
+--动态代理服务器
+
+--发布为npm包
+
+--数据插入后的事件通知
+
+--限制爬取网页数量，达到后停止，间隔指定时间后继续
+
+--持续集成
+
 --文件队列
 crawler.queue.freeze("mysavedqueue.json", function () {
     process.exit();
@@ -30,7 +40,4 @@ crawler.queue.defrost("mysavedqueue.json");
 --文件缓存
 var cacheFilePath = path.resolve("./");
 crawler.cache = new Crawler.cache(cacheFilePath);
---动态代理服务器
---开发方式转为npm
---数据插入后的事件通知
---限制爬取网页数量，达到后停止，间隔指定时间后继续
+
