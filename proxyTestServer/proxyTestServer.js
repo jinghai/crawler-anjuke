@@ -25,7 +25,7 @@ var Schema = {
     收录时间: Date,
     存活时间: Number,
     最后验证时间: Date,
-    testCount:Number
+    testCount: Number
 }
 //http://www.nodeclass.com/api/mongoose.html#schema_Schema
 var schema = new mongoose.Schema(Schema, {strict: false});
@@ -33,10 +33,10 @@ var proxyModel = db.model(tableName, schema);
 
 
 function getHost(callback) {
-    var hour2 = 2*60*60*1000;
+    var hour2 = 2 * 60 * 60 * 1000;
     var now = new Date();
     var t1 = now.getTime();
-    var t2 = t1-(hour2);//debug 30*1000 hour2
+    var t2 = t1 - (hour2);//debug 30*1000 hour2
     var before2hour = new Date(t2);
 
     proxyModel
@@ -46,17 +46,22 @@ function getHost(callback) {
             //协议:'HTTP',
             $or: [
                 {最后验证时间: null},
-                {最后验证时间:{"$lt":before2hour}}
+                {最后验证时间: {"$lt": before2hour}}
             ]
         })
         .then(function (proxy) {
-            logger.debug("getHost",proxy.ip);
-            if(!proxy){
-                callback('no proxy need to test', proxy);
-            }else{
+            if (proxy) {
+                logger.debug("getHost", proxy.ip);
                 callback(null, proxy);
+            } else {
+                logger.warn("getHost", 'no data found to test');
+                callback('no data found to test');
             }
 
+
+        }).catch(function (err) {
+            logger.error("getHost", err);
+            callback(err);
         })
 }
 
@@ -65,7 +70,7 @@ function testHost(proxy, callback) {
     var port = proxy.port;
     var httptarget = 'http://www.baidu.com/';
     var httpsTarget = 'https://www.baidu.com/';
-    var target = proxy.协议==='HTTP'?httptarget:httpsTarget;
+    var target = proxy.协议 === 'HTTP' ? httptarget : httpsTarget;
     var startTime = new Date();
     request.get(target, {
         host: host, port: port, timeout: 3000, headers: {
@@ -83,14 +88,16 @@ function testHost(proxy, callback) {
             proxy.state = 'unavailable';
         }
 
-        proxy.errorMessage = error?error.message:'';
-        proxy.code =  response?response.statusCode:-1
+        proxy.errorMessage = error ? error.message : '';
+        proxy.code = response ? response.statusCode : -1
         proxy.最后验证时间 = endTime;
         proxy.speed = speed;
-        proxy.testCount = proxy.testCount?proxy.testCount++:1;
+        proxy.testCount = proxy.testCount ? proxy.testCount++ : 1;
 
-        logger.info("test",proxy.ip,proxy.协议,target,proxy.code,proxy.errorMessage,proxy.state,speed);
-        callback(null,proxy);
+        logger.info("test", proxy.ip, proxy.协议, target, proxy.code, proxy.errorMessage, proxy.state, speed);
+
+
+        callback(null, proxy);
     })
 }
 
@@ -98,51 +105,56 @@ function updateHost(proxy, callback) {
     proxyModel
         .findByIdAndUpdate(
         {'_id': proxy._id},
-        {$set: {
-            state: proxy.state,
-            最后验证时间:proxy.最后验证时间,
-            errorMessage:proxy.errorMessage,
-            code:proxy.code,
-            speed:proxy.speed,
-            testCount:proxy.testCount
-        }},
+        {
+            $set: {
+                state: proxy.state,
+                最后验证时间: proxy.最后验证时间,
+                errorMessage: proxy.errorMessage,
+                code: proxy.code,
+                speed: proxy.speed,
+                testCount: proxy.testCount
+            }
+        },
         function (err, doc) {
             if (err) {
                 callback(err);
             } else {
-                logger.debug("updateHost",doc.ip);
+                logger.debug("updateHost", doc.ip);
                 callback(null, doc);
             }
         }
     );
 }
 
-function findOneAndTest(callback){
+function findOneAndTest(callback) {
     //多个函数依次执行，且前一个的输出为后一个的输入
     //如果中途出错，后面的函数将不会被执行。
-    async.waterfall([getHost,testHost, updateHost], function (err, result) {
-        if(err){
+    async.waterfall([getHost, testHost, updateHost], function (err, result) {
+        if (err) {
             callback(err)
-        }else{
-            callback(null,result);
+        } else {
+            callback(null, result);
         }
     });
 }
 
 //var count1 = 0;
 //相当于while，但其中的异步调用将在完成后才会进行下一次循环
+//异常时停止循环
 async.whilst(
-    function() { return true },
-    function(cb) {
-        setTimeout(function(){
-            findOneAndTest(function(err,result){
-                if(err) logger.info('whilst',err);
-                cb(null);
+    function () {
+        return true
+    },
+    function (cb) {
+        setTimeout(function () {
+            findOneAndTest(function (err, result) {
+                //if(err) logger.error('whilst',err);
+                cb(null); //忽略异常继续循环
             })
         }, 300);
     },
-    function(err) {
-        logger.info('whilst','end');
+    function (err) {
+        logger.error('whilst', err);
     }
 );
 
