@@ -3,7 +3,7 @@
  */
 var async = require('async');
 var request = require('request');
-var logger = require("../lib/logger.js")('info', 'proxyTestServer');
+var logger = require("../lib/logger.js")('debug', 'proxyTestServer');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
@@ -65,16 +65,22 @@ function getHost(callback) {
         })
 }
 
-function testHost(proxy, callback) {
-    var host = proxy.ip;
-    var port = proxy.port;
-    var httptarget = 'http://www.baidu.com/';
+
+// todo : sockt https://github.com/request/request/tree/master/examples
+// todo: 如何设置代理
+function testHost(proxyEntity, callback) {
+    var host = proxyEntity.ip;
+    var port = proxyEntity.port;
+    var httptarget = 'http://www.data4pro.com/';
     var httpsTarget = 'https://www.baidu.com/';
-    var target = proxy.协议 === 'HTTP' ? httptarget : httpsTarget;
+    var target = proxyEntity.协议 === 'HTTP' ? httptarget : httpsTarget;
     var startTime = new Date();
+
+    var proxy = (proxyEntity.协议 === 'HTTP' ? "http://" : "https://") + host + ":" + port;
+
     request.get(target, {
-        host: host, port: port, timeout: 3000, headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36',
+        proxy: proxy, /*host: host, port: port,*/ timeout: 5000, headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36 ' + host,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'zh-CN,zh;q=0.8',
             //'Connection': 'close'
@@ -83,21 +89,21 @@ function testHost(proxy, callback) {
         var endTime = new Date();
         var speed = endTime.getTime() - startTime.getTime();
         if (!error && response.statusCode == 200) {
-            proxy.state = 'available';
+            proxyEntity.state = 'available';
         } else {
-            proxy.state = 'unavailable';
+            proxyEntity.state = 'unavailable';
         }
 
-        proxy.errorMessage = error ? error.message : '';
-        proxy.code = response ? response.statusCode : -1
-        proxy.最后验证时间 = endTime;
-        proxy.speed = speed;
-        proxy.testCount = proxy.testCount ? proxy.testCount++ : 1;
+        proxyEntity.errorMessage = error ? error.message : '';
+        proxyEntity.code = response ? response.statusCode : -1
+        proxyEntity.最后验证时间 = endTime;
+        proxyEntity.speed = speed;
+        proxyEntity.testCount = proxyEntity.testCount ? proxyEntity.testCount++ : 1;
 
-        logger.info("test", proxy.ip, proxy.协议, target, proxy.code, proxy.errorMessage, proxy.state, speed);
+        logger.info("test", proxy, target, proxyEntity.code, proxyEntity.errorMessage, proxyEntity.state, speed);
 
 
-        callback(null, proxy);
+        callback(null, proxyEntity);
     })
 }
 
