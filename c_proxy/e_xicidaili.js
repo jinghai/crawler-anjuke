@@ -8,7 +8,9 @@ var extractor = {
     name: 'proxys',//代理服务器
     target: [
         /^http:\/\/www\.xicidaili\.com\/nn(\/?)/g,
-        /^http:\/\/www\.xicidaili\.com\/nw(\/?)/g,
+        /^http:\/\/www\.xicidaili\.com\/nt(\/?)/g,
+        /^http:\/\/www\.xicidaili\.com\/wn(\/?)/g,
+        /^http:\/\/www\.xicidaili\.com\/wt(\/?)/g,
     ],
     schema: {
         url: String,
