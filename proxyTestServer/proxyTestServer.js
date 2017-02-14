@@ -189,5 +189,7 @@ async.whilst(
 
 /**
  * Todo:
- * 并发控制
+ * 并发控制 ES7的Async/Await https://cnodejs.org/topic/5640b80d3a6aa72c5e0030b6
+ * node --harmony-async-await app.js
+ * pm2 start my-bash-script.sh    -x --interpreter bash
  */
