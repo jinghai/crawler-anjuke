@@ -4,7 +4,7 @@
 var async = require('async');
 var request = require('request');
 var Agent = require('socks5-http-client/lib/Agent');
-var logger = require("../lib/logger.js")('info', 'proxyTestServer');
+var logger = require("../lib/logger.js")('info', 'proxyTestServer');//verbose
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
@@ -44,6 +44,7 @@ function getHost(callback) {
         .findOne({
             //匿名度: '高匿',
             国家: '中国',
+            协议:'HTTPS',
             $or:[
                 {协议:'HTTP'},
                 {协议:'HTTPS'},
@@ -81,7 +82,8 @@ function testHost(proxyEntity, callback) {
 
     var option = {
         followRedirect: false,
-        timeout: 1000, headers: {
+        tunnel:false,
+        timeout: 3000, headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36 ',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -117,7 +119,9 @@ function testHost(proxyEntity, callback) {
             proxyEntity.state = 'unavailable';
         }
 
-        logger.info("test", target, option.proxy, proxyEntity.code, proxyEntity.errorMessage, proxyEntity.state, speed);
+        //if(proxyEntity.state == 'available') {
+            logger.info("test", target, option.proxy, proxyEntity.code, proxyEntity.errorMessage, proxyEntity.state, speed);
+        //}
 
 
         callback(null, proxyEntity);
