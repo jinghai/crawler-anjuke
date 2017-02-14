@@ -55,7 +55,7 @@ function getHost(callback) {
                 logger.debug("getHost", proxy.ip);
                 callback(null, proxy);
             } else {
-                //logger.warn("getHost", 'no data found to test');
+                logger.debug("getHost", 'no data found to test');
                 callback('no data found to test');
             }
 
