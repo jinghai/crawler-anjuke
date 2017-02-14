@@ -74,7 +74,7 @@ function getHost(callback) {
 function testHost(proxyEntity, callback) {
     var host = proxyEntity.ip;
     var port = proxyEntity.port;
-    var httpTarget = 'http://www.baidu.com/';
+    var httpTarget = 'http://www.baidu.com/';//http://www.data4pro.com/
     var httpsTarget = 'https://www.baidu.com/';
     var target = proxyEntity.协议 === 'HTTP' ? httpTarget : httpsTarget;
     var startTime = new Date();
@@ -82,7 +82,7 @@ function testHost(proxyEntity, callback) {
     var option = {
         followRedirect: false,
         tunnel:false,
-        timeout: 3000, headers: {
+        timeout: 10000, headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36 ',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -100,7 +100,7 @@ function testHost(proxyEntity, callback) {
         option.agentOptions = {socksHost: host, socksPort: port}
     }*/
 
-    request.get(target, option, function (error, response, body) {
+    request.head(target, option, function (error, response, body) {
         var endTime = new Date();
         var speed = endTime.getTime() - startTime.getTime();
 
