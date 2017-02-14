@@ -4,7 +4,7 @@
 var async = require('async');
 var request = require('request');
 var Agent = require('socks5-http-client/lib/Agent');
-var logger = require("../lib/logger.js")('info', 'proxyTestServer');
+var logger = require("../lib/logger.js")('debug', 'proxyTestServer');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
@@ -85,12 +85,16 @@ function testHost(proxyEntity, callback) {
             'Connection': 'close'
         }
     }
-    if (proxyEntity.协议 === 'HTTP' || proxyEntity.协议 === 'HTTPS') {
+    option.proxy = (proxyEntity.协议 === 'HTTP' ? "http://" : "https://") + host + ":" + port;
+
+    /*if (proxyEntity.协议 === 'HTTP' || proxyEntity.协议 === 'HTTPS') {
         option.proxy = (proxyEntity.协议 === 'HTTP' ? "http://" : "https://") + host + ":" + port;
-    } else {//socks5
+    } else {
+        //socks5 todo
+        option.proxy = null;
         option.agentClass = Agent;
         option.agentOptions = {socksHost: host, socksPort: port}
-    }
+    }*/
 
     request.get(target, option, function (error, response, body) {
         var endTime = new Date();
