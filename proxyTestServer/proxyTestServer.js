@@ -44,7 +44,6 @@ function getHost(callback) {
         .findOne({
             //匿名度: '高匿',
             国家: '中国',
-            协议:'HTTPS',
             $or:[
                 {协议:'HTTP'},
                 {协议:'HTTPS'},
