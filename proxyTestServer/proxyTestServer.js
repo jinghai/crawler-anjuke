@@ -4,7 +4,7 @@
 var async = require('async');
 var request = require('request');
 var Agent = require('socks5-http-client/lib/Agent');
-var logger = require("../lib/logger.js")('info', 'proxyTestServer');
+var logger = require("../lib/logger.js")('debug', 'proxyTestServer');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 //mongoose.set('debug', true);
@@ -166,10 +166,10 @@ async.whilst(
     function (cb) {
         setTimeout(function () {
             findOneAndTest(function (err, result) {
-                //if(err) logger.error('whilst',err);
                 cb(null); //忽略异常继续循环
             })
         }, 300);
+        //cb(null);
     },
     function (err) {
         logger.error('whilst', err);
@@ -179,9 +179,5 @@ async.whilst(
 
 /**
  * Todo:
- * 测试区分http和https 和socek
- * 记录测试次数
- * 记录成功次数
- * 计算成功率
- * 写成循环任务（单条/并发）
+ * 并发控制
  */
