@@ -1,0 +1,59 @@
+
+免费代理
+站大爷 http://ip.zdaye.com/
+讯代理 http://www.xdaili.cn/
+
+西刺
+快代理 --
+
+IP段
+https://ispip.clang.cn/
+apnic
+ 自动从APNIC获取进行电信,网通分类,按省划分
+ http://blog.chinaunix.net/uid-10540984-id-3795052.html
+ http://shunter.blog.51cto.com/2183398/1076743
+
+ 先在APNIC网站上下载最新地址列表:
+ http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
+
+ 据查询中心http://wq.apnic.net/apnic-bin/whois.pl
+
+ 如何获取国内所有的电信IP段/联通IP段/移动IP段
+ http://jingyan.baidu.com/article/a378c960a5ed27b328283028.html
+
+ https://github.com/anrip/IpAreaRoute
+
+ CNCGROUP|Unicom 中国联通
+ CHINATELECOM|CHINANET中国电信
+ CMCC中国移动
+ CRTC中国铁通
+ CNNIC中国互联网络信息中心
+ CERNET中国教育和科研计算机网
+
+ yum install jwhois
+ whois 114.114.114.114  -h whois.apnic.net
+
+ Apanic的文件格式说明
+ apnic|CN|ipv4|103.54.160.0|1024|20150408|allocated
+ apnic|CN|ipv4|1.2.2.0|256|20110331|assigned
+ 等级机构|获得该IP段的国家/组织|资源类型|起始IP|IP段长度|分配日期|分配状态
+ IP长度可对应下表转换成子网掩码
+ 256 /24
+ 512 /23
+ 1024 /22
+ 2048 /21
+ 4096 /20
+ 8192 /19
+ 16384 /18
+ 32768 /17
+ 65536 /16
+ 131072 /15
+ 262144 /14
+ 524288 /13
+ 1048576 /12
+ 2097152 /11
+ 4194304 /10
+ ip地址转换、ip网络段转换、CIDR/Netmask转换 http://ip.chacuo.net/ipconvert
+ IP address tools for node.js https://github.com/indutny/node-ip
+ https://github.com/seryh/scanproxy
+https://github.com/haisapan/ProxyScanner.NodeJs
