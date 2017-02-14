@@ -42,9 +42,12 @@ function getHost(callback) {
 
     proxyModel
         .findOne({
-            匿名度: '高匿',
+            //匿名度: '高匿',
             国家: '中国',
-            //协议:'HTTP',
+            $or:[
+                {协议:'HTTP'},
+                {协议:'HTTPS'},
+            ],
             $or: [
                 {最后验证时间: null},
                 {最后验证时间: {"$lt": before2hour}}
