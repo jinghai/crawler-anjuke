@@ -74,7 +74,7 @@ function getHost(callback) {
 function testHost(proxyEntity, callback) {
     var host = proxyEntity.ip;
     var port = proxyEntity.port;
-    var httpTarget = 'http://www.baidu.com/';//http://www.data4pro.com/
+    var httpTarget = 'http://www.baidu.com/';//http://www.data4pro.com/ http://www.sina.com.cn/
     var httpsTarget = 'https://www.baidu.com/';
     var target = proxyEntity.协议 === 'HTTP' ? httpTarget : httpsTarget;
     var startTime = new Date();
