@@ -82,7 +82,7 @@ function testHost(proxyEntity, callback) {
     var option = {
         followRedirect: false,
         tunnel:false,
-        timeout: 10000, headers: {
+        timeout: 3000, headers: {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.93 Safari/537.36 ',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'zh-CN,zh;q=0.8',
