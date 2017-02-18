@@ -64,3 +64,7 @@ crawler.cache = new Crawler.cache(cacheFilePath);
 7.数据库增加了__url,__created 字段
 
 8.支持keys为空，当keys为空时，框架以__url字段为key.即只以url做为重复数据的判断条件
+
+todo
+仅访问指定的一个或多个页面
+指定是否强制更新
