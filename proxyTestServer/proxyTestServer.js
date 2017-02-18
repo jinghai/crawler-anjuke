@@ -34,7 +34,7 @@ var proxyModel = db.model(tableName, schema);
 
 
 function getHost(callback) {
-    var hour2 = 6 * 60 * 60 * 1000;
+    var hour2 = 48 * 60 * 60 * 1000;
     var now = new Date();
     var t1 = now.getTime();
     var t2 = t1 - (hour2);//debug 30*1000 hour2
