@@ -66,5 +66,6 @@ crawler.cache = new Crawler.cache(cacheFilePath);
 8.支持keys为空，当keys为空时，框架以__url字段为key.即只以url做为重复数据的判断条件
 
 todo
+no extractor 增加allowUpdate属性[是否强制更新，默认为false],控制是否强制更新数据。handler运行过程中可以动态改变。
+no 增加___updated内置字段
 仅访问指定的一个或多个页面
-指定是否强制更新

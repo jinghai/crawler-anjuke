@@ -5,7 +5,39 @@ var mongoose = require('mongoose');
 mongoose.set('debug', true);
 //使用环境自己的Promise
 mongoose.Promise = global.Promise;
-mongoose.connection.on('connected', function(){
+
+var dburl = 'mongodb://192.168.2.67/test';
+var tableName = 'Cat';
+var db = mongoose.createConnection(dburl);
+
+var Schema = {
+    name:String,
+    price:Number,
+}
+//http://www.nodeclass.com/api/mongoose.html#schema_Schema
+var schema = new mongoose.Schema(Schema, {strict: true});
+var model = db.model(tableName, schema);
+model
+    .findOne({name:'kitty2'})
+    .then(function(doc){
+        console.log(doc);
+        if(!doc){
+            var entity = new model({
+                name:'kitty2',
+                price:1,
+                ppp:222
+            });
+            entity.save().then(function(){console.log("save ok")});
+        }else{
+            doc.price = ++doc.price;
+            var entity = new model(doc);
+            entity.save().then(function(){console.log("update ok")});
+        }
+    })
+
+
+
+/*mongoose.connection.on('connected', function(){
   console.log('Connection success!');
 });
 mongoose.connection.on('error', function(err){
@@ -13,9 +45,9 @@ mongoose.connection.on('error', function(err){
 });
 mongoose.connection.on('disconnected', function(){
   console.log('Connection disconnected');
-});
+});*/
 
-mongoose
+/*mongoose
   .connect('mongodb://192.168.2.67/test')
   .then(function(){
     console.log("Connectioned");
@@ -23,9 +55,9 @@ mongoose
   })
   .catch(function(err){
     console.log("conn err:",err);
-  });
+  });*/
 
-var date = new Date();
+/*var date = new Date();
 var year = date.getYear();
 var month = date.getMonth();
 
@@ -41,17 +73,17 @@ var area = new mongoose.Schema({
     votes: Number,
     favs:  Number
   }
-});
+});*/
 
 
 /*var Cat = mongoose.model('Cat', {
   名称: String ,
-  售价:{}
+  售价:Number
 });
 
 var kitty = new Cat({
-  名称: 'Zildjian',
-  售价:{2016:{01:3000,02:3500}}
+  名称: 'kitty',
+  售价:10
 });
 kitty
   .save()

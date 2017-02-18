@@ -9,6 +9,7 @@ var extractor = {
     target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/0\/r835(p?)/g,
     schema: {
         name: String,
+        id:Number,
         地址:String,
         一级分类:String,//大类 行业
         二级分类:String,//子类 行业细分
@@ -20,6 +21,9 @@ var extractor = {
         地铁线路:String,//
         地铁站:String,//
     },
+    keys:['id'],
+    //强制更新，运行过程中可动态改变
+    allowUpdate:true,
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
         console.log(queueItem.url);
