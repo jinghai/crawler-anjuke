@@ -66,6 +66,18 @@ crawler.cache = new Crawler.cache(cacheFilePath);
 8.支持keys为空，当keys为空时，框架以__url字段为key.即只以url做为重复数据的判断条件
 
 todo
-no extractor 增加allowUpdate属性[是否强制更新，默认为false],控制是否强制更新数据。handler运行过程中可以动态改变。
-no 增加___updated内置字段
-仅访问指定的一个或多个页面
+OK extractor 增加allowUpdate属性[是否强制更新，默认为false],控制是否强制更新数据。handler运行过程中可以动态改变。
+OK 增加___updated内置字段
+no 仅访问指定的一个或多个页面
+
+Bug:
+第二次开启爬虫会立即完成。
+是不是前一次数据库操作没进行完就进行了下一个请求
+
+功能：
+1.js代码生成网页
+2.需要登陆验证后才能访问的网页
+
+性能：
+1.动态代理服务器
+2.分布式集群
