@@ -30,6 +30,7 @@ var extractor = {
         tag: String,//[province,省,直辖市|city,市,市辖区|county,市辖区,区,区县|town,街道|village,社区] 比较上海和河北石家庄
         parentCode:String//-1为根
     },
+    keys:['code','year'],
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
         var str = queueItem.url.split("/tjyqhdmhcxhfdm/");//http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/ 2015/31/02/30/310230101.html
