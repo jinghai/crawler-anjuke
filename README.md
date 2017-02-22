@@ -20,6 +20,7 @@ https://github.com/haisapan/ProxyScanner.NodeJs
 https://github.com/lzrski/node-simplecrawler-queue-mongo
 
 https://github.com/Unitech/pm2
+https://github.com/jdarling/MongoMQ
 
 -TODO-
 
@@ -90,6 +91,7 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
     1.ConfigLoader 配置项检测，抽取器解析 loadConfig(path)
     2.Task->CrawlerTask  创建配置爬虫,定时任务 start stop
     3.Dao->MongodbDao   save update 单个与批量
+    4.CrawlerAdapter 多爬虫适配
 HttpClinet独立
 分布式队列
 
@@ -101,7 +103,7 @@ HttpClinet独立
 可用性:
 1.npm包
 2.pm2集成
-3.cli
+3.cli 参考MongoMQ
 4.rest api
 爬虫代码打包上传
 平台上直接编辑，测试，启停，监控
