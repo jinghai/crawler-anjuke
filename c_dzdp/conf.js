@@ -8,7 +8,7 @@ var conf = {
     dbUrl: "mongodb://192.168.2.67/crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     crawler: {
         url: "http://www.dianping.com/search/category/1/0/r835",
-        interval: 3000
+        interval: 1000
     },
 
     extractors: [
