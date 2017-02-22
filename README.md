@@ -69,9 +69,14 @@ http://mongoosejs.com/docs/api.html#schema_Schema.reserved
 schema关键字：以下不能做为schema的字段
 on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
 
+--更新2017.2.22--
+1.extractor 增加allowUpdate属性[是否允许更新，默认为false],控制是否更新数据。使用方式参见“e_dzdp_shop.js”
+2.增加___updated内置字段
+3.修复__url内置字段没有保存到数据的的bug
+4.修复log序号打印问题
+
+
 todo
-OK extractor 增加allowUpdate属性[是否强制更新，默认为false],控制是否强制更新数据。handler运行过程中可以动态改变。
-OK 增加___updated内置字段
 no 仅访问指定的一个或多个页面
 
 已知问题:
