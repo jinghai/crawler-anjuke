@@ -76,7 +76,8 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
 2.增加___updated内置字段
 3.修复__url内置字段没有保存到数据的的bug
 4.修复log序号打印问题
-
+--更新2017.2.23--
+修复定时任务不起作用问题
 
 todo
 no 仅访问指定的一个或多个页面
@@ -84,7 +85,6 @@ no 仅访问指定的一个或多个页面
 已知问题:
 1.schema关键字：以下不能做为schema的字段
 on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
-2.周期性爬取功能失效，爬虫在第二次启动时会立即爬取完毕。
 
 架构：
   重构
