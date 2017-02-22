@@ -101,6 +101,7 @@ HttpClinet独立
 是否保存数据库
 
 可用性:
+允许handler异步调用
 1.npm包
 2.pm2集成
 3.cli 参考MongoMQ
