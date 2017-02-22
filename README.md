@@ -74,8 +74,10 @@ OK extractor 增加allowUpdate属性[是否强制更新，默认为false],控制
 OK 增加___updated内置字段
 no 仅访问指定的一个或多个页面
 
-Bug:
-第二次开启爬虫会立即完成。
+已知问题:
+1.schema关键字：以下不能做为schema的字段
+on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
+2.周期性爬取功能失效，爬虫在第二次启动时会立即爬取完毕。
 
 功能：
 1.js代码生成网页
