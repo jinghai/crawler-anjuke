@@ -84,6 +84,10 @@ no 仅访问指定的一个或多个页面
 on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
 2.周期性爬取功能失效，爬虫在第二次启动时会立即爬取完毕。
 
+可用性
+1.npm包
+2.pm2集成
+
 功能：
 1.js代码生成网页
 2.需要登陆验证后才能访问的网页
