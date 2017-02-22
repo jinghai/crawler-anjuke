@@ -84,6 +84,12 @@ no 仅访问指定的一个或多个页面
 on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
 2.周期性爬取功能失效，爬虫在第二次启动时会立即爬取完毕。
 
+架构：
+  重构
+    1.ConfigLoader 配置项检测，抽取器解析 loadConfig(path)
+    2.Task->CrawlerTask  创建配置爬虫,定时任务 start stop
+    3.Dao->MongodbDao   save update 单个与批量
+
 可用性
 1.npm包
 2.pm2集成
