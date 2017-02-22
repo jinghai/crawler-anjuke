@@ -90,10 +90,21 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
     1.ConfigLoader 配置项检测，抽取器解析 loadConfig(path)
     2.Task->CrawlerTask  创建配置爬虫,定时任务 start stop
     3.Dao->MongodbDao   save update 单个与批量
+HttpClinet独立
+分布式队列
 
-可用性
+自动测试：
+特征url
+测试次数
+是否保存数据库
+
+可用性:
 1.npm包
 2.pm2集成
+3.cli
+4.rest api
+爬虫代码打包上传
+平台上直接编辑，测试，启停，监控
 
 功能：
 1.js代码生成网页
