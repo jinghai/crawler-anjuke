@@ -16,7 +16,8 @@ var conf = {
     extractors: [
         //{handler: "./e_dzdp_type.js"},
         //{handler: "./e_dzdp_shangqu.js"},
-        {handler: "./e_dzdp_dibiao.js"},
+        //{handler: "./e_dzdp_dibiao.js"},
+        {handler: "./e_dzdp_ditie.js"},
     ]
 
 

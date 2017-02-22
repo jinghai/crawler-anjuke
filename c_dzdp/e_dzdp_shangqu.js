@@ -20,7 +20,6 @@ var extractor = {
     //allowUpdate: true,
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
-        console.log(queueItem.url);
         var blocks = $('div.box.shopallCate');
         var typeEl = null;
         if (!blocks) {
