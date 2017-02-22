@@ -96,3 +96,5 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
 1.动态代理服务器
 2.分布式集群
 
+安居客 每月爬取3次 每次爬行需要3天时间 10秒一次
+行政区 每年爬取3次 每次爬行需要1天时间 2秒一次
