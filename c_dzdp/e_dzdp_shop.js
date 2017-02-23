@@ -22,8 +22,8 @@ var extractor = {
 
         bussiArea: String,//商区
         bussiAreaCode: String,
-        subBussArea: String,//子商区/地标
-        subBussAreaCode: String,
+        landmark: String,//地标
+        landmarkCode: String,
 
         district: String,//行政区
         districtCode: String,
@@ -37,10 +37,20 @@ var extractor = {
     },
     keys: ['id'],
     times: 0,
-    //强制更新，运行过程中可动态改变
+    //允许更新
     allowUpdate: true,
-    //指定需要合并更新的字段，字段类型必需为String，新数据与数据库老数据不同则合并，合并后使用“｜”分割
-    mergeUpdate:['channel','channelCode','type','typeCode'],
+    //指定需要合并更新的字段(其它字段不更新)，字段类型必需为String，新数据与数据库老数据不同则合并，合并后使用“｜”分割
+    //allowUpdate为true时生效
+    mergeFields:[
+        'channel',
+        'channelCode',
+        'type',
+        'typeCode',
+        'bussiArea',
+        'bussiAreaCode',
+        'landmark',
+        'landmarkCode',
+    ],
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
 
