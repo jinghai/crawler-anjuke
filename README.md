@@ -76,11 +76,12 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
 2.增加___updated内置字段
 3.修复__url内置字段没有保存到数据的的bug
 4.修复log序号打印问题
+
 --更新2017.2.23--
 修复定时任务不起作用问题
 
 todo
-no 仅访问指定的一个或多个页面
+no extractor增加mergeUpdate
 
 已知问题:
 1.schema关键字：以下不能做为schema的字段

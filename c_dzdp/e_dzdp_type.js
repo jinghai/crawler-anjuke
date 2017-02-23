@@ -7,12 +7,12 @@
 var extractor = {
     name: '大众点评_行业',
     target: /^http:\/\/www\.dianping\.com\/shopall\/(\d+)\/0$/g,
-    //helpUrl:/http:\/\/www\.dianping\.com\/[a-z]+$/g,
+    //helpUrl:/http:\/\/www\.dianping\.com\/[a-z]+$/g,//打开可抓全国
     schema: {
         name: String,//
         code: String,//
         parentCode: String,
-        level: Number,//等级【1-行业，2-行业细分，3-品牌】
+        level: Number,//等级【1-行业（channel），2-行业细分（type），3-品牌（branch）】
 
     },
     keys: ['code'],
