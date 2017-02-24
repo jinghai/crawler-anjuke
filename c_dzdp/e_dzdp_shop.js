@@ -7,8 +7,24 @@
 var extractor = {
     name: '大众点评_商户',
     //target: /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/g,//全国
-    target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g,//上海
+    //target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g,//上海
     //target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/g,//上海 电影院
+    target: {
+        test: function (url) {
+            //剔除多余网址，含：m n o # 符号的不爬
+            var t = url.split('/');
+            var str = t[t.length-1];
+            t=/(m+|n+|o+|#+)/g
+            if(t.test(str)){
+                return false;
+            }
+            //var regString = '^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)';//全国
+            //var regString = '^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)';//上海
+            var regString = '^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)';//上海 电影院
+            var r = new RegExp(regString);
+            return r.test(url);
+        }
+    },
     schema: {
         id: Number,//大众点评id
         name: String,//商户名称
