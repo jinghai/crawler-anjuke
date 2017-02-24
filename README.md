@@ -80,12 +80,13 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
 --更新2017.2.23--
 修复定时任务不起作用问题
 
-todo
-no extractor增加mergeFields，指定更新时需要合并的字段，字段类型必需为String，新数据与数据库老数据不同则合并，合并后使用“｜”分割 allowUpdate为true时生效
+--更新2017.2.24--
+extractor增加mergeFields，指定更新时需要合并的字段，字段类型必需为String，新数据与数据库老数据不同则合并，合并后使用“｜”分割 allowUpdate为true时生效
 
-已知问题:
-1.schema关键字：以下不能做为schema的字段
-on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
+todo
+no mergeFields支持数组字段类型
+no schema关键字：以下不能做为schema的字段
+    on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
 
 架构：
   重构

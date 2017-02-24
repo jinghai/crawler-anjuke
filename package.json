@@ -1,6 +1,9 @@
 {
   "name": "application-name",
   "version": "0.0.1",
+  "engines": {
+    "node": ">= v7.0.0"
+  },
   "dependencies": {
     "async": "^2.1.4",
     "cheerio": "^0.22.0",
