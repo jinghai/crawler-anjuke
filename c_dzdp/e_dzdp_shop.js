@@ -6,8 +6,9 @@
 
 var extractor = {
     name: '大众点评_商户',
-    //target: /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/g,
-    target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/g,
+    //target: /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/g,//全国
+    target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g,//上海
+    //target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/g,//上海 电影院
     schema: {
         id: Number,//大众点评id
         name: String,//商户名称
