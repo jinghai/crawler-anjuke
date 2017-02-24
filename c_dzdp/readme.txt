@@ -36,3 +36,10 @@ branch:品牌
 一个shop有多个type,如中经堂，即是中医养生，又是足疗保健
 一个shop只有一个branch 如星巴克
 一个shop可以属于多个channel 如星巴克会出现在 美食 休闲娱乐 结婚 三个频道
+
+--遗留--
+以上分类页面结构不同，暂不处理
+'http://www.dianping.com/search/category/1/55/g6844'
+'http://www.dianping.com/search/category/1/70/g33792'
+'http://www.dianping.com/search/category/1/90/g25475'
+'http://www.dianping.com/search/category/1/40/g33818'
