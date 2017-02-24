@@ -11,8 +11,10 @@ var conf = {
         //url:'http://www.dianping.com/citylist/citylist?citypage=1',
 
         //url: "http://www.dianping.com/shopall/1/0",//test type
-        url:'http://www.dianping.com/search/category/1/10/g24645r1022',//test shop /1/10/g132 g24645
+        //url:'http://www.dianping.com/search/category/1/10/g24645r1022',//test shop /1/10/g132 g24645
         //url:'http://www.dianping.com/search/category/1/10/g24645r875',//test shop
+
+        url:'http://www.dianping.com/search/category/1/25/g136',
         interval: 1000
     },
 
