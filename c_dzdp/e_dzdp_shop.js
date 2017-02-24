@@ -19,8 +19,8 @@ var extractor = {
                 return false;
             }
             //var regString = '^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)';//全国
-            //var regString = '^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)';//上海
-            var regString = '^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)';//上海 电影院
+            var regString = '^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)';//上海
+            //var regString = '^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)';//上海 电影院
             var r = new RegExp(regString);
             return r.test(url);
         }
