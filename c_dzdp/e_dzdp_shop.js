@@ -59,6 +59,7 @@ var extractor = {
         'channel',
         'channelCode',
         'category',
+        'branch',
         'bussiArea',
         'landmark',
         'district',

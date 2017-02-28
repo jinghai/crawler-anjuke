@@ -16,7 +16,7 @@ var conf = {
         //url:'http://www.dianping.com/citylist/citylist?citypage=1',全国
         url:'http://www.dianping.com/search/category/1/0',//上海
         //url: 'http://www.dianping.com/search/category/1/25/g136',//上海电影院
-        interval: 50,
+        interval: 100,
         maxConcurrency: 1,
     },
 
