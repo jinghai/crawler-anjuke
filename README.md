@@ -83,8 +83,10 @@ on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName
 --更新2017.2.24--
 extractor增加mergeFields，指定更新时需要合并的字段，字段类型必需为String，新数据与数据库老数据不同则合并，合并后使用“｜”分割 allowUpdate为true时生效
 
+--更新2017.2.28--
+mergeFields支持数组字段类型
+
 todo
-no mergeFields支持数组字段类型
 no handler增加next()回调，支持在handler中异步查询
 
 遗留问题：
