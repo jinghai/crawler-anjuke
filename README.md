@@ -85,9 +85,11 @@ extractor增加mergeFields，指定更新时需要合并的字段，字段类型
 
 todo
 no mergeFields支持数组字段类型
+no handler增加next()回调，支持在handler中异步查询
+
+遗留问题：
 no schema关键字：以下不能做为schema的字段
     on, emit, _events, db, get, set, init, isNew, errors, schema, options, modelName, collection, _pres, _posts, toObject
-
 架构：
   重构
     1.ConfigLoader 配置项检测，抽取器解析 loadConfig(path)
