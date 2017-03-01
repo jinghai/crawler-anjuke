@@ -9,21 +9,24 @@ var extractor = {
     //target: /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/g,//全国
     //target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g,//上海
     //target: /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/g,//上海 电影院
-    target: {
-        test: function (url) {
-            //剔除多余网址，含：m n o # 符号的不爬
-            var t = url.split('/');
-            var str = t[t.length-1];
-            t=/(m+|n+|o+|#+)/g
-            if(t.test(str)){
-                return false;
+    target: [
+        {
+            test: function (url) {
+                //剔除多余网址，含：m n o # 符号的不爬
+                var t = url.split('/');
+                var str = t[t.length - 1];
+                t = /(m+|n+|o+|#+)/g
+                if (t.test(str)) {
+                    return false;
+                }
+                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
+                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海
+                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/;//上海 电影院
+                return regString.test(url);
             }
-            //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
-            var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海
-            //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/;//上海 电影院
-            return regString.test(url);
-        }
-    },
+        },
+        /^http:\/\/www\.dianping\.com\/shop\/(\d+)$/g,
+    ],
     schema: {
         id: Number,//大众点评id
         name: String,//商户名称
@@ -69,6 +72,11 @@ var extractor = {
     ],
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
+        var shopReg = /^http:\/\/www\.dianping\.com\/shop\/(\d+)$/g;
+        if(shopReg.test(queueItem.url)){
+            return this.getShopLocation($,queueItem);
+        }
+
         var city, cityCode, channel, channelCode, category, categoryCode, branch, branchCode, bussiArea, bussiAreaCode,
             landmark, landmarkCode, district, districtCode, subDistrict, subDistrictCode,
             metroLine, metroLineCode, metroStation, metroStationCode;
@@ -215,7 +223,31 @@ var extractor = {
         }
         return ret;
     },
+    getShopLocation: function ($,queueItem) {
+        var id, lng, lat, lbsType = "qq";
+        var html = $.html();
+        var str = html.split('shopGlat:')[1];
+        str = str.split(',')[0];
+        str = str.replace(/\s/g, '').replace(/\"/g, '');
+        lat = str;
 
+        str = html.split('shopGlng:')[1];
+        str = str.split(',')[0];
+        str = str.replace(/\s/g, '').replace(/\"/g, '');
+        lng = str;
+
+
+        str = queueItem.url.split('/');
+        id = str[str.length - 1];
+
+        var obj = {
+            id: id,
+            lng: lng,
+            lat: lat,
+            lbsType: lbsType
+        }
+        return obj;
+    }
 
 }
 
