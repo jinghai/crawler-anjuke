@@ -31,8 +31,8 @@ var extractor = {
         reviewNum: Number,//点评数量
         meanPrice: Number,//人均消费
 
-        city: String,
-        cityCode: String,
+        city: String,//城市名称
+        cityCode: String,//大众点评的城市代码
 
         channel: String,// 一级分类【逗号表达式】行业/频道（channel）
         channelCode: String,
