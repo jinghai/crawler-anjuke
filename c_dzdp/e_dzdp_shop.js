@@ -20,8 +20,8 @@ var extractor = {
                     return false;
                 }
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
-                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海
-                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/;//上海 电影院
+                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海
+                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/;//上海 电影院
                 return regString.test(url);
             }
         },
@@ -51,6 +51,10 @@ var extractor = {
 
         metroLine: String,//地铁线
         metroStation: String,//地铁站
+
+        lng: Number,//精度
+        lat: Number,//维度
+        lbsType: String//地图类型【qq|baidu】
     },
     keys: ['id'],
     times: 0,
