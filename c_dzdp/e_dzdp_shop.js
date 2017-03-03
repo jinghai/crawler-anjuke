@@ -16,8 +16,8 @@ var extractor = {
                 //剔除多余网址，含：m n o # 符号的不爬
                 var t = url.split('/');
                 var str = t[t.length - 1];
-                t = /(m+|n+|o+|#+)/g
-                if (t.test(str)) {
+                var r = /(m+|n+|o+|#+)/g
+                if (r.test(str)) {
                     return false;
                 }
                 str = t[t.length - 2];
