@@ -88,6 +88,11 @@ extractor增加mergeFields，指定更新时需要合并的字段，字段类型
 --更新2017.2.28--
 mergeFields支持数组字段类型
 
+--更新2017.2.28--
+1.增加当停止程序时保存队列文件，下次启动可以继续爬取
+2.conf.js 增加exitCount属性 达到指定请求次数后退出，默认false。使用范例参见：/c_dzdp/conf.js
+
+
 todo
 no handler增加next()回调，支持在handler中异步查询
 使用文件队列，在停止和启动后可以继续任务,当完成时情况队列
