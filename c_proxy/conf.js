@@ -9,7 +9,7 @@ var conf = {
     dbUrl: "mongodb://192.168.2.56/_crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     crawler: {
         url: "http://www.xicidaili.com",
-        interval: 1 * 1000 * 60 * 30  //间隔30分
+        interval: 1 * 1000 * 60 * 16  //间隔16分
     },
 
     extractors: [
