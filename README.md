@@ -97,6 +97,7 @@ mergeFields支持数组字段类型
 todo
 no handler增加next()回调，支持在handler中异步查询
 no 先爬分类，然后按分类去爬目标
+no 存盘增加耗时打印
 去除mongoose依赖
 更换爬虫引擎
 
