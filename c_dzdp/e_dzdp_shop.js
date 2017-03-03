@@ -19,6 +19,12 @@ var extractor = {
                 if (t.test(str)) {
                     return false;
                 }
+                str = t[t.length - 2];
+                //以下分类页面样式不同
+                if(str==="55" || str==="70"|| str==="90"|| str==="40"){
+                    return false;
+                }
+
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
                 var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/;//上海 电影院
