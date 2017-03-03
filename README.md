@@ -138,3 +138,28 @@ HttpClinet独立
 
 安居客 每月爬取3次 每次爬行需要3天时间 10秒一次 首次采集完毕
 行政区 每年爬取3次 每次爬行需要1天时间 2秒一次 首次采集完毕
+
+
+爬商铺
+爬人口
+
+增加userangent数量
+重构
+
+实验jsdom是否可以加载js
+pm2 集群
+npm包
+mongoMQ
+mongo并发抢占
+go语言了解
+owncloud了解
+被封闭立即停止存盘
+
+导队列实验断网
+全部转换到8G服务器
+mongo 1T 单独
+user导入
+
+学github
+搞gogs
+centos使用openvpn
