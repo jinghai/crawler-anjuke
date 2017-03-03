@@ -95,8 +95,6 @@ mergeFields支持数组字段类型
 
 todo
 no handler增加next()回调，支持在handler中异步查询
-使用文件队列，在停止和启动后可以继续任务,当完成时情况队列
-达到一定爬行次数停止进程，避免内存溢出
 去除mongoose依赖
 更换爬虫引擎
 
