@@ -17,7 +17,7 @@ var conf = {
         url:'http://www.dianping.com/search/category/1/0',//上海
         //url: 'http://www.dianping.com/search/category/1/25/g136',//上海电影院
         //url:'http://www.dianping.com/shop/10017328',
-        interval: 500,
+        interval: 1000,
         maxConcurrency: 1,
     },
     exitCount:500,//达到指定请求次数后退出，默认false
