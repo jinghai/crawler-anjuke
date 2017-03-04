@@ -20,7 +20,7 @@ var conf = {
         interval: 1000,
         maxConcurrency: 1,
     },
-    exitCount:500,//达到指定请求次数后退出，默认false
+    //exitCount:500,//达到指定请求次数后退出，默认false
     extractors: [
         //{handler: "./e_dzdp_type.js"},
         //{handler: "./e_dzdp_shangqu.js"},
