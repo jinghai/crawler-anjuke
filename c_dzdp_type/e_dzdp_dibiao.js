@@ -12,7 +12,7 @@ var extractor = {
         name: String,//
         code: String,//
         parentCode: String,
-        level: Number,//等级【1-行业，2-行业细分，3-品牌】
+        level: Number,//等级【1-行政区，2-地标】
         city: String,
     },
     keys: ['code'],
@@ -58,7 +58,7 @@ var extractor = {
             resultList.push({
                 name: name,
                 code: code,//
-                parentCode: '0',
+                parentCode: '-1',
                 level: 1,//等级【1，2，3】
                 city:city
             });
@@ -74,7 +74,7 @@ var extractor = {
                     name: xfName,
                     code: xfCode,//
                     parentCode: code,
-                    level: 2,//等级【1-行业，2-行业细分，3-品牌】,
+                    level: 2,//等级,
                     city:city
                 }
                 resultList.push(obj);

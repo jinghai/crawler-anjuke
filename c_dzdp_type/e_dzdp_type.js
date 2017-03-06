@@ -5,7 +5,7 @@
  */
 
 var extractor = {
-    name: '大众点评_行业',
+    name: '大众点评_分类',
     target: /^http:\/\/www\.dianping\.com\/shopall\/(\d+)\/0$/g,
     //helpUrl:/http:\/\/www\.dianping\.com\/[a-z]+$/g,//打开可抓全国
     schema: {
@@ -37,7 +37,7 @@ var extractor = {
             resultList.push({
                 name: hangyeName,
                 code: hangyeCode,//
-                parentCode: '0',
+                parentCode: '-1',
                 level: 1,//等级【1-行业，2-行业细分，3-品牌】
             });
 

@@ -95,6 +95,7 @@ mergeFields支持数组字段类型
 
 --更新2017.3.6--
 conf.js增加autoSave,默认为false ,若设置为ture则每请求100次自动保存一次队列
+修复conf.js中配置多个extractors，只执行最后个extractor的bug.
 
 todo
 no handler增加next()回调，支持在handler中异步查询

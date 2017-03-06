@@ -1,11 +1,11 @@
 /**
  * Created by yneos on 2017/1/1.
- * 大众点评_商区
+ * 大众点评_地铁
  *
  */
 
 var extractor = {
-    name: '大众点评_商区',
+    name: '大众点评_地铁',
     target: /^http:\/\/www\.dianping\.com\/shopall\/(\d+)\/0$/g,
     //helpUrl:/http:\/\/www\.dianping\.com\/[a-z]+$/g,
     schema: {
@@ -34,7 +34,7 @@ var extractor = {
             var tempEl =  $(blocks[i]);
             var titleEl = tempEl.find('h2');
             var title = titleEl.text();
-            if(title==='商区'){
+            if(title==='地铁沿线'){
                 typeEl =  $(blocks[i]);
                 break;
             }
@@ -58,7 +58,7 @@ var extractor = {
             resultList.push({
                 name: name,
                 code: code,//
-                parentCode: '0',
+                parentCode: '-1',
                 level: 1,//等级【1，2，3】
                 city:city
             });
