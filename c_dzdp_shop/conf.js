@@ -14,7 +14,8 @@ var conf = {
         //url:'http://www.dianping.com/search/category/1/10/g24645r875',//test shop
 
         //url:'http://www.dianping.com/citylist/citylist?citypage=1',全国
-        url:'http://www.dianping.com/search/category/1/0',//上海
+        url:'http://www.dianping.com/shopall/1/0',//上海分类
+        //url:'http://www.dianping.com/search/category/1/0',//上海 店铺
         //url: 'http://www.dianping.com/search/category/1/25/g136',//上海电影院
         //url:'http://www.dianping.com/shop/10017328',
         interval: 1000,

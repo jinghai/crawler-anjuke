@@ -26,11 +26,19 @@ var extractor = {
                     return false;
                 }
 
+                var bigCode = "15";//频道
+                var smallCoce = "g2894";//分类
+
+                var regString = "^http:\/\/www\.dianping\.com\/search\/category\/1\/";//上海
+                bigCode = bigCode?bigCode:"(\d+)";
+                smallCoce = smallCoce?"\/"+smallCoce:"\/g";
+                regString = regString+bigCode+smallCoce;
+                var regObj = new RegExp(regString);
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
-                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)g/g;//上海
+
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/15\/g135(p?)/;//
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/15(\/?)/;//
-                return regString.test(url);
+                return regObj.test(url);
             }
         },
         /^http:\/\/www\.dianping\.com\/shop\/(\d+)$/g,
