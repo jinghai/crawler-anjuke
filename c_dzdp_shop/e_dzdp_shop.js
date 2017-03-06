@@ -26,11 +26,11 @@ var extractor = {
                     return false;
                 }
 
-                var bigCode = "15";//频道
-                var smallCoce = "g2894";//分类
+                var bigCode = "";//频道
+                var smallCoce = "";//分类
 
                 var regString = "^http:\/\/www\.dianping\.com\/search\/category\/1\/";//上海
-                bigCode = bigCode?bigCode:"(\d+)";
+                bigCode = bigCode?bigCode:"(\\d+)";
                 smallCoce = smallCoce?"\/"+smallCoce:"\/g";
                 regString = regString+bigCode+smallCoce;
                 var regObj = new RegExp(regString);
