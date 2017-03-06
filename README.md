@@ -93,6 +93,8 @@ mergeFields支持数组字段类型
 2.conf.js 增加exitCount属性 达到指定请求次数后退出，默认false。使用范例参见：/c_dzdp/conf.js
 3.每隔100次请求保存一次队列
 
+--更新2017.3.6--
+conf.js增加autoSave,默认为false ,若设置为ture则每请求100次自动保存一次队列
 
 todo
 no handler增加next()回调，支持在handler中异步查询
@@ -100,6 +102,7 @@ no 先爬分类，然后按分类去爬目标
 no 存盘增加耗时打印
 去除mongoose依赖
 更换爬虫引擎
+保存内存益处问题
 
 遗留问题：
 no schema关键字：以下不能做为schema的字段
