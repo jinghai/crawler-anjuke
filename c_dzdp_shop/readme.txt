@@ -43,3 +43,7 @@ branch:品牌
 'http://www.dianping.com/search/category/1/70/g33792'
 'http://www.dianping.com/search/category/1/90/g25475'
 'http://www.dianping.com/search/category/1/40/g33818'
+
+耗时预估
+地点基数:1000
+总用时=(分类数量(含子分类)*1000)+商铺数量

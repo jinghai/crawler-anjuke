@@ -25,7 +25,7 @@ var extractor = {
                 if(str==="55" || str==="70"|| str==="90"|| str==="40"){
                     return false;
                 }
-                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/10(\/?)/;//
+                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/10\/g/;//
 
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海

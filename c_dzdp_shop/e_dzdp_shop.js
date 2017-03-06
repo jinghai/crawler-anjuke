@@ -27,8 +27,9 @@ var extractor = {
                 }
 
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
-                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)/g;//上海
-                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/25\/g136(p?)/;//上海 电影院
+                var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/(\d+)(\/?)g/g;//上海
+                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/15\/g135(p?)/;//
+                //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/1\/15(\/?)/;//
                 return regString.test(url);
             }
         },
