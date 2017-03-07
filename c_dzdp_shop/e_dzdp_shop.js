@@ -22,7 +22,7 @@ var extractor = {
                 }
                 str = t[t.length - 2];
                 //以下分类页面样式不同
-                if(str==="55" || str==="70"|| str==="90"|| str==="40"){
+                if (str === "55" || str === "70" || str === "90" || str === "40") {
                     return false;
                 }
 
@@ -30,9 +30,9 @@ var extractor = {
                 var smallCoce = "";//分类
 
                 var regString = "^http:\/\/www\.dianping\.com\/search\/category\/1\/";//上海
-                bigCode = bigCode?bigCode:"(\\d+)";
-                smallCoce = smallCoce?"\/"+smallCoce:"\/g";
-                regString = regString+bigCode+smallCoce;
+                bigCode = bigCode ? bigCode : "(\\d+)";
+                smallCoce = smallCoce ? "\/" + smallCoce : "\/g";
+                regString = regString + bigCode + smallCoce;
                 var regObj = new RegExp(regString);
                 //var regString = /^http:\/\/www\.dianping\.com\/search\/category\/(\d+)\/(\d+)(\/?)/;//全国
 
@@ -82,19 +82,27 @@ var extractor = {
         'channel',
         'channelCode',
         'category',
+        'categoryCode',
         'branch',
+        'branchCode',
         'bussiArea',
+        'bussiAreaCode',
         'landmark',
+        'landmarkCode',
         'district',
+        'districtCode',
         'subDistrict',
+        'subDistrictCode',
         'metroLine',
+        'metroLineCode',
         'metroStation',
+        'metroStationCode',
     ],
     //返回一个数据对象或数组
     handler: function ($, queueItem, responseBuffer, response) {
         var shopReg = /^http:\/\/www\.dianping\.com\/shop\/(\d+)$/g;
-        if(shopReg.test(queueItem.url)){
-            return this.getShopLocation($,queueItem);
+        if (shopReg.test(queueItem.url)) {
+            return this.getShopLocation($, queueItem);
         }
 
         var city, cityCode, channel, channelCode, category, categoryCode, branch, branchCode, bussiArea, bussiAreaCode,
@@ -121,42 +129,72 @@ var extractor = {
                 category = curr.text().trim();
                 category = category === '不限' ? null : category;
                 if (category) {
+                    categoryCode = this.getTypeCode(curr.attr('href'));
                     //品牌
                     var subCurr = el.find('#classfy-sub>a.cur');
                     branch = subCurr.text().trim();
                     branch = branch === '不限' ? null : branch;
+                    if (branch) {
+                        branchCode = this.getTypeCode(subCurr.attr('href'));
+                    }
                 }
             }
         }
+
+        var currTypeCode = branchCode || categoryCode;
+
         //商区
         var el = $('#bussi-nav>a.cur');
         bussiArea = el.text().trim();
         bussiArea = bussiArea === '不限' ? null : bussiArea;
+        if (bussiArea) {
+            bussiAreaCode = this.getLocationCode(currTypeCode, el.attr('href'));
+        }
 
         //地标
         var el = $('#bussi-nav-sub>a.cur');
         landmark = el.text().trim();
         landmark = landmark === '不限' ? null : landmark;
+        if (landmark) {
+            landmarkCode = this.getLocationCode(currTypeCode, el.attr('href'));
+        }
 
         //行政区
         var el = $('#region-nav>a.cur');
         district = el.text().trim();
         district = district === '不限' ? null : district;
+        if (district) {
+            districtCode = this.getLocationCode(currTypeCode, el.attr('href'));
+        }
 
         //子行政区
         var el = $('#region-nav-sub>a.cur');
         subDistrict = el.text().trim();
         subDistrict = subDistrict === '不限' ? null : subDistrict;
+        if (subDistrict) {
+            subDistrictCode = this.getLocationCode(currTypeCode, el.attr('href'));
+        }
 
         //地铁线路
         var el = $('#metro-nav>a.cur');
         metroLine = el.text().trim();
         metroLine = metroLine === '不限' ? null : metroLine;
+        if (metroLine) {
+            metroLineCode = this.getLocationCode(currTypeCode, el.attr('href'));
+        }
 
         //地铁站
         var el = $('#metro-nav-sub>a.cur');
         metroStation = el.text().trim();
         metroStation = metroStation === '不限' ? null : metroStation;
+        if (metroStation && metroLineCode) {
+            metroStationCode = this.getLocationCode(currTypeCode, el.attr('href'));
+            //r和u需要变换一下
+            var sp = metroLineCode.replace('r','');
+            sp = 'u'+sp;
+            var tmp = metroStationCode.split(sp);
+            metroStationCode = tmp[0];
+        }
 
 
         //测试用例
@@ -177,13 +215,21 @@ var extractor = {
             channel: channel,
             channelCode: channelCode,
             category: category,
+            categoryCode: categoryCode,
             branch: branch,
+            branchCode: branchCode,
             bussiArea: bussiArea,
+            bussiAreaCode: bussiAreaCode,
             landmark: landmark,
+            landmarkCode: landmarkCode,
             district: district,
+            districtCode: districtCode,
             subDistrict: subDistrict,
+            subDistrictCode: subDistrictCode,
             metroLine: metroLine,
+            metroLineCode: metroLineCode,
             metroStation: metroStation,
+            metroStationCode: metroStationCode,
         }
 
         //商铺
@@ -243,7 +289,7 @@ var extractor = {
         }
         return ret;
     },
-    getShopLocation: function ($,queueItem) {
+    getShopLocation: function ($, queueItem) {
         var id, lng, lat, lbsType = "qq";
         var html = $.html();
         var str = html.split('shopGlat:')[1];
@@ -267,6 +313,23 @@ var extractor = {
             lbsType: lbsType
         }
         return obj;
+    },
+    getTypeCode: function (url) {
+        var str = url.split('/');
+        str = str[str.length - 1];
+        //由于分类是g开头，位置是r(区)或c(县)开头，所以要去掉r或c后的字串
+        str = str.split('r')[0];
+        str = str.split('c')[0];
+        return str;
+    },
+    getLocationCode: function (currTypeCode, url) {
+        var str = url.split('/');
+        str = str[str.length - 1];
+        if (currTypeCode) {
+            var tmp = str.split(currTypeCode);
+            str = tmp[tmp.length - 1];
+        }
+        return str;
     }
 
 }
