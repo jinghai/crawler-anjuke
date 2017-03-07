@@ -12,7 +12,7 @@ var extractor = {
         name: String,//
         code: String,//
         parentCode: String,
-        level: Number,//等级【1-行政区，2-商区，3-地标】
+        level: Number,//等级【1-行政区，2-商区】
         city: String,
     },
     keys: ['code'],

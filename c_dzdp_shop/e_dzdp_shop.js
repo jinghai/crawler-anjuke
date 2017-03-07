@@ -59,11 +59,11 @@ var extractor = {
         category: String,//二级分类【逗号表达式】行业细分（type）
         branch: String, //三级分类【逗号表达式】品牌（branch）
 
-        bussiArea: String,//商区
-        landmark: String,//地标
+        bussiArea: String,//商区 对应分类的地标
+        landmark: String,//地标  对应分类的地标
 
-        district: String,//行政区
-        subDistrict: String,//子行政区
+        district: String,//行政区 对应分类的商区
+        subDistrict: String,//子行政区 对应分类的商区
 
         metroLine: String,//地铁线
         metroStation: String,//地铁站
