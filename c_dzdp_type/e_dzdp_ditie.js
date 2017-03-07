@@ -12,8 +12,9 @@ var extractor = {
         name: String,//
         code: String,//
         parentCode: String,
-        level: Number,//等级【1-行业，2-行业细分，3-品牌】
+        level: Number,//等级【1-线路，2-站点】
         city: String,
+        cityCode: String,
     },
     keys: ['code'],
     //允许更新
@@ -30,19 +31,21 @@ var extractor = {
         if (!cityStr)    return null;
         var city = cityStr.split('生活指南地图')[0];
 
-        for(var i=0;i<blocks.length;i++){
-            var tempEl =  $(blocks[i]);
+        var tmp = queueItem.url.split('/');
+        var cityCode = tmp[tmp.length - 2];
+
+        for (var i = 0; i < blocks.length; i++) {
+            var tempEl = $(blocks[i]);
             var titleEl = tempEl.find('h2');
             var title = titleEl.text();
-            if(title==='地铁沿线'){
-                typeEl =  $(blocks[i]);
+            if (title === '地铁沿线') {
+                typeEl = $(blocks[i]);
                 break;
             }
 
         }
 
-        if(!typeEl) return null;
-
+        if (!typeEl) return null;
 
 
         var resultList = [];
@@ -54,16 +57,17 @@ var extractor = {
             var name = el.text();
             var url = el.attr("href").split('/');///search/category/1/40
             var code = url[url.length - 1];
-            //行业（频道）
+            //
             resultList.push({
                 name: name,
                 code: code,//
                 parentCode: '-1',
-                level: 1,//等级【1，2，3】
-                city:city
+                level: 1,//
+                city: city,
+                cityCode: cityCode,
             });
 
-            //行业细分
+            //
             var xfListEl = $(list).find('dd>ul>li>a');
             for (var j = 0; j < xfListEl.length; j++) {
                 var xf = $(xfListEl[j]);
@@ -74,8 +78,9 @@ var extractor = {
                     name: xfName,
                     code: xfCode,//
                     parentCode: code,
-                    level: 2,//等级【1-行业，2-行业细分，3-品牌】,
-                    city:city
+                    level: 2,//
+                    city: city,
+                    cityCode: cityCode,
                 }
                 resultList.push(obj);
             }

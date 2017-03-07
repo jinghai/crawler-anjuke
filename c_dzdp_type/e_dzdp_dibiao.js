@@ -14,6 +14,7 @@ var extractor = {
         parentCode: String,
         level: Number,//等级【1-行政区，2-地标】
         city: String,
+        cityCode: String,
     },
     keys: ['code'],
     //允许更新
@@ -29,6 +30,9 @@ var extractor = {
         var cityStr = $('h1.shopall>strong').text();//上海生活指南地图
         if (!cityStr)    return null;
         var city = cityStr.split('生活指南地图')[0];
+
+        var tmp = queueItem.url.split('/');
+        var cityCode = tmp[tmp.length - 2];
 
         for(var i=0;i<blocks.length;i++){
             var tempEl =  $(blocks[i]);
@@ -59,8 +63,9 @@ var extractor = {
                 name: name,
                 code: code,//
                 parentCode: '-1',
-                level: 1,//等级【1，2，3】
-                city:city
+                level: 1,//
+                city:city,
+                cityCode: cityCode,
             });
 
             //行业细分
@@ -74,8 +79,9 @@ var extractor = {
                     name: xfName,
                     code: xfCode,//
                     parentCode: code,
-                    level: 2,//等级,
-                    city:city
+                    level: 2,//
+                    city:city,
+                    cityCode: cityCode,
                 }
                 resultList.push(obj);
             }
