@@ -39,10 +39,17 @@ branch:品牌
 
 --遗留--
 以上分类页面结构不同，暂不处理
-'http://www.dianping.com/search/category/1/55/g6844'
-'http://www.dianping.com/search/category/1/70/g33792'
-'http://www.dianping.com/search/category/1/90/g25475'
-'http://www.dianping.com/search/category/1/40/g33818'
+结婚
+http://www.dianping.com/search/category/1/55/g6844
+亲子
+http://www.dianping.com/search/category/1/70/g33792
+家装
+http://www.dianping.com/search/category/1/90/g25475
+宴会
+http://www.dianping.com/search/category/1/40/g33818
+酒店
+http://www.dianping.com/shopall/1/60-->302
+http://www.dianping.com/shanghai/hotel/n10
 
 耗时预估
 地点基数:1000
