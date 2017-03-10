@@ -24,6 +24,8 @@ https://github.com/lzrski/node-simplecrawler-queue-mongo
 https://github.com/Unitech/pm2
 https://github.com/jdarling/MongoMQ
 
+https://github.com/mongo-express/mongo-express admin ui
+
 -TODO-
 
 --动态代理服务器
