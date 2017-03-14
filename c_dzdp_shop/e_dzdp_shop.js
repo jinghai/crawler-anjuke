@@ -275,8 +275,8 @@ var extractor = {
         }
 
 
-         this.crawler.stop();
-         console.log(shopList);
+        //this.crawler.stop();
+         //console.log(shopList);
 
         return shopList;
     },
