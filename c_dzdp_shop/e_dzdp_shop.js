@@ -26,7 +26,7 @@ var extractor = {
                     return false;
                 }
 
-                var bigCode = "";//频道
+                var bigCode = "10";//频道
                 var smallCoce = "";//分类
 
                 var regString = "^http:\/\/www\.dianping\.com\/search\/category\/1\/";//上海
@@ -57,16 +57,24 @@ var extractor = {
         channelCode: String,
 
         category: String,//二级分类【逗号表达式】行业细分（type）
+        categoryCode:String,
         branch: String, //三级分类【逗号表达式】品牌（branch）
+        branchCode:String,
 
         bussiArea: String,//商区 对应分类的地标
+        bussiAreaCode:String,
         landmark: String,//地标  对应分类的地标
+        landmarkCode:String,
 
         district: String,//行政区 对应分类的商区
+        districtCode:String,
         subDistrict: String,//子行政区 对应分类的商区
+        subDistrictCode:String,
 
         metroLine: String,//地铁线
+        metroLineCode:String,
         metroStation: String,//地铁站
+        metroStationCode:String,
 
         lng: Number,//精度
         lat: Number,//维度
@@ -267,12 +275,9 @@ var extractor = {
         }
 
 
-        /*this.times++
-         if (this.times > 0) {
          this.crawler.stop();
-         }
          console.log(shopList);
-         */
+
         return shopList;
     },
     //根据name获取搜素条件的外层Div
