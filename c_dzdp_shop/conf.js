@@ -5,7 +5,7 @@
 var conf = {
     //【秒】【分】【小时】【日】【月】【周】 *所有 ?不指定 -区间 */5每5
     cron:"00 00 08 15 * *",//每月15日
-    logLevel: 'info',//debug|verbose|info|warn|error
+    logLevel: 'verbose',//debug|verbose|info|warn|error
     dbUrl: "mongodb://192.168.2.67/crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     //dbUrl: "mongodb://192.168.2.56/crawler",
     crawler: {

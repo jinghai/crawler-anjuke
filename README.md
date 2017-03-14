@@ -197,10 +197,6 @@ FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memo
 
 
 上海
-0 分类与分类关系 
-
-1 美食 休闲娱乐 购物 生活服务
-2 运动健身 酒店 亲子 
 
 3 商铺
 
