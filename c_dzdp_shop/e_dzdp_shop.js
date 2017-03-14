@@ -26,7 +26,7 @@ var extractor = {
                     return false;
                 }
 
-                var bigCode = "10";//频道
+                var bigCode = "";//频道
                 var smallCoce = "";//分类
 
                 var regString = "^http:\/\/www\.dianping\.com\/search\/category\/1\/";//上海
