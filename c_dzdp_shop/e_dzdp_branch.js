@@ -66,6 +66,7 @@ var extractor = {
             //由于分类是g开头，位置是r(区)或c(县)开头，所以要去掉r或c后的字串
             str = str.split('r')[0];
             str = str.split('c')[0];
+            str = str.split('u')[0];
             return str;
         }
 
