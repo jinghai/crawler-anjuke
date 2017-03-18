@@ -24,7 +24,7 @@ var conf = {
     //exitCount:500,//达到指定请求次数后退出，默认false
     extractors: [
         {handler: "./e_dzdp_shop.js"},
-        //{handler: "./e_dzdp_branch.js"},
+        {handler: "./e_dzdp_branch.js"},
 
     ]
 
