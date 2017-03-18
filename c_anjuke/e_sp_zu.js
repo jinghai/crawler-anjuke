@@ -8,7 +8,10 @@ var extractor = {
   //target: /^http:\/\/sh\.sp\.anjuke\.com\/zu\/(\d+)\/$/,
   // http://sh.sp.anjuke.com/zu/ http://sh.sp.anjuke.com/zu/p2
   //helpUrl:/^http:\/\/sh\.sp\.anjuke\.com\/zu(\/?|\/p\d+)$/,
-    target:/^http:\/\/sh\.sp\.anjuke\.com\/zu(\/?|\/p\d+)$/,
+    target:[
+        /^http:\/\/sh\.sp\.anjuke\.com\/zu(\/?|\/p\d+)$/,
+        /^http:\/\/shanghai\.anjuke\.com\/$/
+    ],
   schema: {
     url: String,
     anjukeId:String,
@@ -31,18 +34,7 @@ var extractor = {
 
 
     var result = {
-      url: queueItem.url,
-      anjukeId:anjukeId,
-      name: name,
-      area: area,
-      district: district,
-      city: city,
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,//getMonth 0~11
-      price: price,
-      mom: mom,
-      momUpDown: momUpDown,
-      point: {lat:lat,lng:lng},
+
     }
 
     //this.crawler.stop();
