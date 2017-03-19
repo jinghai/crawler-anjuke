@@ -27,11 +27,15 @@ https://github.com/jdarling/MongoMQ
 https://github.com/mongo-express/mongo-express admin ui
 
 workflow
-
 https://github.com/brunch/brunch
 
-test
+MQ
+mqtt(Mosca http://blog.yuansc.com/2015/01/09/MQTT-Nodejs%E5%AE%9E%E7%8E%B0-Mosca%E7%AE%80%E4%BB%8B/)
+var kafka = require('kafka-node');
+https://github.com/zeromq/zeromq.js
+https://github.com/jdarling/MongoMQ
 
+test
 mocha
 
 -TODO-
