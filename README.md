@@ -35,6 +35,9 @@ var kafka = require('kafka-node');
 https://github.com/zeromq/zeromq.js
 https://github.com/jdarling/MongoMQ
 
+Jupyter JupyterLab JupyterHub Anaconda
+https://github.com/jupyter/notebook
+
 test
 mocha
 
