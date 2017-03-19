@@ -41,6 +41,9 @@ https://github.com/jupyter/notebook
 webide
 https://coding.net/u/coding/p/WebIDE/git
 
+database
+Greenplum
+
 test
 mocha
 
