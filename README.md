@@ -38,6 +38,9 @@ https://github.com/jdarling/MongoMQ
 Jupyter JupyterLab JupyterHub Anaconda
 https://github.com/jupyter/notebook
 
+webide
+https://coding.net/u/coding/p/WebIDE/git
+
 test
 mocha
 
