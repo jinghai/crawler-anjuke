@@ -9,7 +9,8 @@ var conf = {
     dbUrl: "mongodb://192.168.2.67/crawler",//'mongodb://user:pass@localhost:port,anotherhost:port,yetanother:port/mydatabase'
     //dbUrl: "mongodb://192.168.2.56/crawler",
     crawler: {
-        url: "http://www.dianping.com/shopall/1/0",
+        //url: "http://www.dianping.com/shopall/1/0",//上海
+        url:'http://www.dianping.com/shopall/6/0',//苏州
         //url:'http://www.dianping.com/search/category/1/10/g24645r1022',//test shop /1/10/g132 g24645
         //url:'http://www.dianping.com/search/category/1/10/g24645r875',//test shop
 

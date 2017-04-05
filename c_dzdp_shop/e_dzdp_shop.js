@@ -26,10 +26,12 @@ var extractor = {
                     return false;
                 }
 
+                //var city = 1;//上海
+                var city = 6;//苏州
                 var bigCode = "";//频道
                 var smallCoce = "";//分类
 
-                var regString = "^http:\/\/www\.dianping\.com\/search\/category\/1\/";//上海
+                var regString = "^http:\/\/www\.dianping\.com\/search\/category\/"+city+"\/";//上海
                 bigCode = bigCode ? bigCode : "(\\d+)";
                 smallCoce = smallCoce ? "\/" + smallCoce : "\/g";
                 regString = regString + bigCode + smallCoce;
